@@ -1,5 +1,5 @@
 # Averaging Weights Leads to Wider Optima and Better
-> [1803.05407](https://arxiv.org/pdf/1803.05407)<br>
+> [1803.05407](https://arxiv.org/abs/1803.05407)<br>
 > SWA (Stochastic Weight Averaging)
 <div align=center><img src="/figures/1803.05407.1.png" style="height: 250px; width: auto;"/></div>
 
