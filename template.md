@@ -10,7 +10,8 @@
 ### 1.
 ### 2. 
 - x
-- y
+- y<br>
+&rarr; y1 + y2 = y3
 - z
 
 ## Summary 
