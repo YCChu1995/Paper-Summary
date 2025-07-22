@@ -7,6 +7,8 @@
 1. Ensemble methods improve accuracy with a high inference cost.
 2. Traditional training procedure only picks the best model from a training trajectory, wasting information hidden among the rest of the checkpoints.
 
+## Experiment
+
 ## Summary 
 Instead of picking the final weights of a model at the end of training, SWA computes a `running average of weights` sampled from the `tail of the training trajectory` (~>75%), typically from a cyclical or constant learning rate schedule.
 
