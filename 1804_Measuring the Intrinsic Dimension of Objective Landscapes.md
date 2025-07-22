@@ -1,5 +1,5 @@
 # Measuring the Intrinsic Dimension of Objective Landscapes
-> [1804.08838](https://arxiv.org/pdf/1804.08838)<br>
+> [1804.08838](https://arxiv.org/abs/1804.08838)<br>
 > Intrinsic Dimension
 <div align=center><img src="/figures/1804.08838.1.png" style="height: 150px; width: auto;"/></div>
 
