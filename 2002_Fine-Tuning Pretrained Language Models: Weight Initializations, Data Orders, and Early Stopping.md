@@ -26,7 +26,7 @@ At the moment, `fine‑tuning BERT is inconsistent`: large performance variance 
 
 ## Summary 
 1. Confirm the instability during fine-tuning BERT across different weight initialization (WI) of the classification layer and training data ordering (DO), determined by shuffling, affects validation performance.
-2. Propose a solution (Early Stopping Strategy) to overcome the instability as in [No.1 in Tech Insights](/Paper-Summary/new/main#tech-insights).
+2. Propose a solution (Early Stopping Strategy) to overcome the instability as in [No.1 in Tech Insights](#tech-insights).
 
 ## Tech Insights 
 1. When facing unstable fine-tuning, `TRY MORE, STOP EARLY, CONTINUE SOME`
