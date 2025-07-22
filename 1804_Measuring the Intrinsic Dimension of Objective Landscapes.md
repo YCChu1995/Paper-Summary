@@ -1,7 +1,7 @@
 # Measuring the Intrinsic Dimension of Objective Landscapes
 > [1804.08838](https://arxiv.org/pdf/1804.08838)<br>
 > Intrinsic Dimension
-<img src="/figures/1804.08838.1.png" style="height: 150px; width: auto;"/>
+<div align=center><img src="/figures/1804.08838.1.png" style="height: 150px; width: auto;"/></div>
 
 ## Motivation 
 1. At the moment, there is a growing consensus, `"deep networks are overparameterized, many parameters are redundant"`.
@@ -9,11 +9,11 @@
 
 ## Experiment
 1. Different `architectures` usually have `different intrinsic dimensions` even for the same task.
-> In CV, CNNs are more efficient architectures than FC
+  > In CV, CNNs are more efficient architectures than FC
 2. Choosing the proper architecture for the task can have fewer intrinsic dimensions. 
-> Inverted pendulum w/ RL ~100× easier than MNIST w/ FC
-<img src="/figures/1804.08838.2.png" style="height: 200px; width: auto;"/>
-<img src="/figures/1804.08838.3.png" style="height: 300px; width: auto;"/>
+  > Inverted pendulum w/ RL ~100× easier than MNIST w/ FC
+<div align=center><img src="/figures/1804.08838.2.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/1804.08838.3.png" style="height: 300px; width: auto;"/></div>
 
 ## Summary 
 1. Introducing subspace training to `measure intrinsic dimension`.
