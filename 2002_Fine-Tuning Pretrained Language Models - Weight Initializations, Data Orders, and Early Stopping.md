@@ -33,5 +33,5 @@ At the moment, `fine‑tuning BERT is inconsistent`: large performance variance 
     - **Try more**: Start multiple training trails (with same hyperparameters and different WI and DO)
     - **Stop early**: Stop the trial if validation loss does not improve for t steps
     - **Continue some**: Continue training with top-k performance trials
-2. More granular validation (e.g., 10×/epoch) yields a better chance to spot optimal checkpoints and improve selection
-3. Validation performance early in training is highly correlated with performance late in training (shown in the figure at top)
+2. `More granular validation yields a better chance to spot optimal checkpoints and improve selection.`
+3. `Validation performance early in training is highly correlated with performance late in training.` (as shown in the [figure](#3-performance-correlation--early--late-val-accuracy-) at top)
