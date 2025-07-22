@@ -1,5 +1,5 @@
 # Measuring the Intrinsic Dimension of Objective Landscapes
-> [1902.00751](https://arxiv.org/pdf/1902.00751)<br>
+> [1902.00751](https://arxiv.org/abs/1902.00751)<br>
 > Adapter Module
 <div align=center><img src="/figures/1902.00751.1.png" style="height: 250px; width: auto;"/><img src="/figures/1902.00751.2.png" style="height: 250px; width: auto;"/></div>
 
