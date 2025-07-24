@@ -3,6 +3,14 @@
 > 
 <div align=center><img src="/figures/.1.png" style="height: 150px; width: auto;"/></div>
 
+## Summary 
+1. 
+
+## Tech Insights 
+1. 
+
+---
+
 ## Motivation 
 1. 
 
@@ -13,9 +21,3 @@
 - y<br>
 &rarr; y1 + y2 = y3
 - z
-
-## Summary 
-1. 
-
-## Tech Insights 
-1. 
