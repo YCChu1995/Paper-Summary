@@ -4,4 +4,5 @@ The high generalization variance is also found in T5 and GPT.
 - [2301.09820](https://arxiv.org/abs/2301.09820) A Stability Analysis of Fine-Tuning a Pre-Trained Model 
 - [2302.07778](https://arxiv.org/abs/2302.07778) Measuring the Instability of Fine-Tuning
 
-### 2. 
+### 2. LoRA should tuning Q + V over Q + K + V 
+https://arxiv.org/abs/2410.02247
