@@ -2,6 +2,31 @@
 > [2006.04884](https://arxiv.org/abs/2006.04884)<br>
 <div align=center><img src="/figures/2006.04884.1.png" style="height: 250px; width: auto;"/></div>
 
+## Summary 
+1. Debunk popular explanations: `Catastrophic forgetting and small data size are not the reason for fine-tuning instability.`
+    - Catastrophic forgetting is the byproduct of optimization failure.
+    - Dataset Size is NOT the root cause of BERT fine‑tuning instability, but the reduced total training steps is.
+2. `Fine-tuning instability results from optimization failure` with 2 core issues with empirical evidence.
+    - `Vanishing gradients` (optimization failures) in early-training (causing most fail runs):<br>
+      Solution: `Adam with bias correction` / `learning rate warm up` / `gradient clipping` / ...
+    - `Generalization Varience` (low training loss doesn’t guarantee high performance on validation data) in late-training (causing performance variance in success runs):<br>
+      Solution: `Train longer` (more iterations/epochs) / `pick or average over multiple random seed runs` / ...
+3. Proposed Solution
+    1. Optimizer: Use `Adam with bias correction enabled`, countering vanishing gradients at the start.
+    2. Learning Rate & Schedule: Keep lr small (~2×10⁻⁵), `linearly warm up` for ~10% of steps, then decay to zero
+    3. Longer Training: Instead of the usual 3 epochs, train for ~20 epochs, ensuring convergence to zero training loss and broader exploration of parameter space.
+
+## Tech Insights 
+1. `Low training loss doesn’t guarantee high performance on validation data.`<br>
+   > This high generalization variance is also found in T5 and GPT. ([2301.09820](https://arxiv.org/abs/2301.09820), [2302.07778](https://arxiv.org/abs/2302.07778))
+   > 
+   &rarr; `Fine-tuning BERT has high generalization variance.`
+2. `Fine-tuning instability results from optimization failure.`
+   > **Vanishing gradients** in early-training (causing most fail runs)<br>
+   > **Generalization variance** in late-training (causing performance variance in success runs)
+
+---
+
 ## Motivation 
 1. At the moment, there is no good explanation for the BERT fine‑tuning instability.<br>
   Prior work pointed to two main culprits: `catastrophic forgetting` ([1909.11299](https://github.com/YCChu1995/Paper-Summary/blob/main/1909___Mixout-Effective%20Regularization%20to%20Finetune%20Large-scale%20Pretrained%20Language%20Models.md)) and `small dataset sizes` ([1810.04805](https://github.com/YCChu1995/Paper-Summary/blob/main/1810_BERT%20-%20Pre-training%20of%20Deep%20Bidirectional%20Transformers%20for%20Language%20Understanding.md)).<br>
@@ -44,26 +69,3 @@
   &rarr; During training in successful runs, `accuracy doesn’t plateau early, and fluctuates significantly even late into training, oscillating between ~50% and ~75%`.
 - `Low training loss doesn’t guarantee high performance on unseen data.`
 <div align=center><img src="/figures/2006.04884.5.png" style="height: 250px; width: auto;"/></div>
-
-## Summary 
-1. Debunk popular explanations: `Catastrophic forgetting and small data size are not the reason for fine-tuning instability.`
-    - Catastrophic forgetting is the byproduct of optimization failure.
-    - Dataset Size is NOT the root cause of BERT fine‑tuning instability, but the reduced total training steps is.
-2. `Fine-tuning instability results from optimization failure` with 2 core issues with empirical evidence.
-    - `Vanishing gradients` (optimization failures) in early-training (causing most fail runs):<br>
-      Solution: **Adam with bias correction** / **learning rate warm up** / **gradient clipping** / ...
-    - `Generalization Varience` (low training loss doesn’t guarantee high performance on validation data) in late-training (causing performance variance in success runs):<br>
-      Solution: **Train longer** (more iterations/epochs) / **pick or average over multiple random seed runs** / ...
-3. Proposed Solution
-    1. Optimizer: Use **Adam with bias correction enabled**, countering vanishing gradients at the start.
-    2. Learning Rate & Schedule: Keep lr small (~2×10⁻⁵), **linearly warm up** for ~10% of steps, then decay to zero
-    3. Longer Training: Instead of the usual 3 epochs, train for ~20 epochs—ensuring convergence to zero training loss and broader exploration of parameter space.
-
-## Tech Insights 
-1. `Low training loss doesn’t guarantee high performance on validation data.`<br>
-   > This high generalization variance is also found in T5 and GPT. ([2301.09820](https://arxiv.org/abs/2301.09820), [2302.07778](https://arxiv.org/abs/2302.07778))
-   > 
-   &rarr; `Fine-tuning BERT has high generalization variance.`
-2. `Fine-tuning instability results from optimization failure.`
-   > **Vanishing gradients** in early-training (causing most fail runs)<br>
-   > **Generalization variance** in late-training (causing performance variance in success runs)
