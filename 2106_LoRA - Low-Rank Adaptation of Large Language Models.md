@@ -10,7 +10,7 @@
 2. How many ranks perform better?
     - `Ranks 4~16 have peak performance in GPT2-medium for their task.`
 3. How to set Amplification Facotr?
-    - From the `equation in H.4`, for their experiments
+    - From the [`equation in H.4`](#5-how-to-set-amplification-factor), for their experiments
         - `r = 4, Amplification Facotr ~ 20`
         - `r = 64, Amplification Facotr ~ 2`
 
@@ -52,12 +52,12 @@
     - `Empirical evidence shows that ranks 4~16 have peak performance in GPT2-medium.`
     - Quote from H.2, `The relationship between model size and the optimal rank for adaptation is still an open question.`
   
-<div align=center><img src="/figures/2106.09685.5.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.5.png" style="height: 130px; width: auto;"/></div>
 <div align=center><img src="/figures/2106.09685.6.png" style="height: 150px; width: auto;"/></div>
-<div align=center><img src="/figures/2106.09685.7.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.7.png" style="height: 250px; width: auto;"/></div>
 
-### 5. How to set Amplification Facotr?
+### 5. How to set Amplification Factor?
 - From the `equation in H.4`, for their experiments
-    - `r = 4, Amplification Facotr ~ 20`
-    - `r = 64, Amplification Facotr ~ 2`
-<div align=center><img src="/figures/2106.09685.8.png" style="height: 150px; width: auto;"/></div>
+    - `r = 4, Amplification Factor ~ 20`
+    - `r = 64, Amplification Factor ~ 2`
+<div align=center><img src="/figures/2106.09685.8.png" style="height: 80px; width: auto;"/></div>
