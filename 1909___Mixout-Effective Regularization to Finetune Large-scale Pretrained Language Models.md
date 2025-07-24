@@ -3,15 +3,17 @@
 > Mixout
 <div align=center><img src="/figures/1909.11299.1.png" style="height: 150px; width: auto;"/></div>
 
-## Motivation 
-1. 
-
-## Experiment
-1. 
-
 ## Summary 
 1. 
 
 ## Tech Insights 
 > fine-tuning instability may result from catastrophic forgetting
+1. 
+
+---
+
+## Motivation 
+1. 
+
+## Experiment
 1. 
