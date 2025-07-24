@@ -2,7 +2,7 @@
 > [2002.06305](https://arxiv.org/abs/2002.06305)<br>
 
 ## Summary 
-1. Confirm the instability during fine-tuning BERT across different weight initialization (WI) of the classification layer and training data ordering (DO), determined by shuffling, affects validation performance.
+1. Confirm fine-tuning instability in BERT across different `weight initialization (WI) in the classification layer` and `training data ordering (DO), determined by shuffling`, affects validation performance.
 2. Propose a solution (Early Stopping Strategy) to overcome the instability as in [No.1 in Tech Insights](#tech-insights).
 
 ## Tech Insights 
