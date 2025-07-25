@@ -1,7 +1,7 @@
 # BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 > [1810.04805](https://arxiv.org/abs/1810.04805)<br>
 > BERT
-<div align=center><img src="/figures/1810.04805.1.png" style="height: 250px; width: auto;"/><img src="/figures/1810.04805.2.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.1.png" style="height: 250px; width: auto;"/> <img src="/figures/1810.04805.2.png" style="height: 250px; width: auto;"/></div>
 
 ## Summary 
 1. **Architecture**: `Bidirectional Encoder` (only the encoder from Transformer)
@@ -15,7 +15,7 @@
 ## Tech Insights 
 1. `MLM converges more slowly but surpasses LTR almost immediately.`
 2. Follow-up researches show that `NSP is not efficient for Pretraining Tasks`.
-3. 
+   
 ---
 
 ## Motivation 
@@ -36,8 +36,8 @@
 - `Token embeddings` (from vocabulary Lookup)
 - `Segment embeddings` (indicating sentence tag, A or B)
 - `Position embeddings` (`absolute positional embeddings, a trainable embedding matrix` (e.g. 512 positions × 768 dims for BERT‑Base), learned during pre-training)
-<div align=center><img src="/figures/1810.04805.3.png" style="height: 100px; width: auto;"/></div>
-<div align=center><img src="/figures/1810.04805.4.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.3.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.4.png" style="height: 300px; width: auto;"/></div>
 
 ### 3. Pretraining Tasks & Objectives
 - Joint Training<br>
@@ -63,4 +63,4 @@
       
 ### 4. Ablation for Different Masking Procedures
 - `MLM converges more slowly but surpasses LTR almost immediately.`
-<div align=center><img src="/figures/1810.04805.5.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.5.png" style="height: 300px; width: auto;"/></div>
