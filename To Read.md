@@ -6,3 +6,11 @@ The high generalization variance is also found in T5 and GPT.
 
 ### 2. LoRA should tuning Q + V over Q + K + V 
 https://arxiv.org/abs/2410.02247
+
+### 3. LoRA follow-ups
+[2303.10512] AdaLoRA (Hard)
+[2305.14314] QLoRA
+[2309.14717] QA‑LoRA
+[2310.11454] VeRA
+[2311.09578] Tied‑LoRA
+[2402.09353] DoRA (Hard)
