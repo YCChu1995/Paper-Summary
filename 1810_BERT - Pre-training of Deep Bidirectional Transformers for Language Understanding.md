@@ -15,6 +15,7 @@
 ## Tech Insights 
 1. `MLM converges more slowly but surpasses LTR almost immediately.`
 2. Follow-up researches show that `NSP is not efficient for Pretraining Tasks`.
+3. Quote from paper in section 4.1, "Additionally, for BERTLARGE we found that `finetuning was sometimes unstable on small datasets`,so we ran several random restarts and selected the  best model on the Dev set."
    
 ---
 
