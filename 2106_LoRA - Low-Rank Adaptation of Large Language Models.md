@@ -5,8 +5,7 @@
 
 ## Summary 
 1. Where to attach LoRA modules?
-    - `Best: ∆Wq + ∆Wk + ∆Wv + ∆Wo`
-    - `Efficiency: ∆Wq + ∆Wv`
+    - `∆Wq + ∆Wv`
 2. How many ranks perform better?
     - `Ranks 4~16 have peak performance in GPT2-medium for their task.`
 3. How to set Amplification Facotr?
