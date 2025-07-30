@@ -1,7 +1,7 @@
 # AdaLoRA: Adaptive Budget Allocation for Parameter-Efficient Fine-Tuning
 > [2303.10512](https://arxiv.org/abs/2303.10512)<br>
 > AdaLoRA
-<div align=center><img src="/figures/2303.10512.1.png" style="height: 30px; width: auto;"/></div>
+<div align=center><img src="figures/2303.10512.1.png" style="height: 30px; width: auto;"/></div>
 
 ## Summary 
 `LoRA` (works well) + `SVD` (can monitor module-importance)  &rarr; `AdaLoRA` (SVD-based, rank-adaptive LoRA)
