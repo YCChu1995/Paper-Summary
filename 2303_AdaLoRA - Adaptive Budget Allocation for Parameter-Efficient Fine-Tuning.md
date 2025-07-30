@@ -12,7 +12,7 @@
 2. Different modules contribute to FT performance differently
    > FFN modules > Attention modules<br>
    > Top layers > Bottom layers
-3. The [resulting budget distribution](/#3-the-resulting-budget-distribution) support previous researches
+3. The [resulting budget distribution](#3-the-resulting-budget-distribution) support previous researches
 ---
 
 ## Motivation 
