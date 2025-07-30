@@ -8,10 +8,10 @@
 
 ## Tech Insights 
 1. AdaLoRA mostly outperfom LoRA by a few.
-   > with a complex algorithm overhead, I `don't recommend` implement AdaLoRA if not having serious budget issue.
-2. `Different modules contribute to FT performance differently.`
-   > FFN modules > Attention modules<br>
-   > Top layers > Bottom layers
+   > with a complex algorithm overhead, I **don't recommend** implement AdaLoRA if not having serious budget issue.
+2. Different modules contribute to FT performance differently.
+   - `FFN modules > Attention modules`<br>
+   - `Top layers > Bottom layers`
 3. The [resulting budget distribution](#3-the-resulting-budget-distribution) support previous researches.
 ---
 
