@@ -25,9 +25,6 @@ https://arxiv.org/abs/2410.02247
     - Investigating linguistic probing tasks on BERT/RoBERTa/XLNet, they conclude: core linguistic knowledge shifts towards lower layers after fine-tuning, while higher layers become more task-specific.
 
 ### 4. LoRA follow-ups
-- [2303.10512] AdaLoRA (Hard)
-- [2305.14314] QLoRA
-- [2309.14717] QA‑LoRA
 - [2310.11454] VeRA
 - [2311.09578] Tied‑LoRA
 - [2402.09353] DoRA (Hard)
