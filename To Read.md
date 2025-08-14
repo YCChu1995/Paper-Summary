@@ -28,3 +28,6 @@ https://arxiv.org/abs/2410.02247
 - [2310.11454] VeRA
 - [2311.09578] Tied‑LoRA
 - [2402.09353] DoRA (Hard)
+
+### 5. Relative Position Embeddings _over_ Sinusoidal or Learned position embeddings
+- [1803.02155] Self-Attention with Relative Position Representations
