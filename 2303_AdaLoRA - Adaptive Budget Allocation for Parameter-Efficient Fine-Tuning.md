@@ -1,7 +1,7 @@
 # AdaLoRA: Adaptive Budget Allocation for Parameter-Efficient Fine-Tuning
 > [2303.10512](https://arxiv.org/abs/2303.10512)<br>
 > AdaLoRA
-<div align=center><img src="figures/2303.10512.1.png" style="height: 30px; width: auto;"/></div>
+<div align=center><img src="figures/2303.10512.01.png" style="height: 30px; width: auto;"/></div>
 
 ## Summary 
 `LoRA` (works well) + `SVD` (can monitor module-importance)  &rarr; `AdaLoRA` (SVD-based, rank-adaptive LoRA)
@@ -24,11 +24,11 @@
 ### 1. Different modules contribute to FT performance differently
 - FFN modules > Attention modules
 - Top layers > Bottom layers
-<div align=center><img src="/figures/2303.10512.2.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2303.10512.02.png" style="height: 200px; width: auto;"/></div>
 
 ### 2. Comparison among FFT, LoRA, and AdaLoRA
 - AdaLoRA mostly outperfom LoRA by a few
   > Section 4 in the original paper
 
 ### 3. The resulting budget distribution
-<div align=center><img src="/figures/2303.10512.3.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2303.10512.03.png" style="height: 250px; width: auto;"/></div>
