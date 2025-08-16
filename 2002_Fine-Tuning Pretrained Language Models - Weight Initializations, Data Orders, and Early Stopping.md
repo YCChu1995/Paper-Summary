@@ -21,17 +21,17 @@ At the moment, `fine‑tuning BERT is inconsistent`: large performance variance 
 ## Experiment
 ### 1. Expected Validation Performance 
 - `More granular validation (e.g., 10×/epoch) yields a better chance to spot optimal checkpoints and improve selection.`
-<div align=center><img src="/figures/2002.06305.1.png" style="height: 300px; width: auto;"/></div>
+<div align=center><img src="/figures/2002.06305.01.png" style="height: 300px; width: auto;"/></div>
 
 ### 2. WI & DO
 - Both WI and DO equally contribute to the instability.
 - Statistically significant differences between best vs worst random seeds are confirmed via ANOVA tests (p < 0.05).<br>
   &rarr; `Fine-tuning instability isn’t random “noise”.`<br>
   &rarr; `It systematically arises from both WI and DO.`
-<div align=center><img src="/figures/2002.06305.2.png" style="height: 200px; width: auto;"/></div>
-<div align=center><img src="/figures/2002.06305.3.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2002.06305.02.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2002.06305.03.png" style="height: 200px; width: auto;"/></div>
 
 ### 3. Performance Correlation [ Early & Late val-accuracy ]
 - Best WI seeds perform well **across tasks**.<br>
   Best DO seeds perform well **on specific tasks**.
-<div align=center><img src="/figures/2002.06305.4.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2002.06305.04.png" style="height: 200px; width: auto;"/></div>
