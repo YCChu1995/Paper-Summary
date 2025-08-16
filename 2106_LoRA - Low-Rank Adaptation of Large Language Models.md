@@ -1,7 +1,7 @@
 # LoRA: Low-Rank Adaptation of Large Language Models
 > [2106.09685](https://arxiv.org/abs/2106.09685)<br>
 > LoRA
-<div align=center><img src="/figures/2106.09685.1.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.01.png" style="height: 150px; width: auto;"/></div>
 
 ## Summary 
 1. Where to attach LoRA modules?
@@ -29,16 +29,16 @@
 ### 1. Normalized subspace similarity between **_ranks_**
 - Top singular-vector directions of Ar=8 and Ar=64 are the most useful, while other directions potentially contain mostly random noises accumulated during training.<br>
   &rarr; `∆W could have a very small “intrinsic rank”.`
-<div align=center><img src="/figures/2106.09685.2.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.02.png" style="height: 200px; width: auto;"/></div>
 
 ### 2. Normalized subspace similarity between **_runs_** ( with different random seeds )
 - `LoRA learns stable signals`, not just stochastic noise.
-<div align=center><img src="/figures/2106.09685.3.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.03.png" style="height: 200px; width: auto;"/></div>
 
 ### 3. Normalized subspace similarity between **pretrained W** & **fine-tuned ΔW**
 - ∆W does not contain the top singular directions of W<br>
   &rarr; `∆W contains those “task-specific” directions that are otherwise not emphasized in W.`
-<div align=center><img src="/figures/2106.09685.4.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.04.png" style="height: 200px; width: auto;"/></div>
 
 ### 4. Where to attach LoRA modules? & How many ranks perform better?
 - Table 6 shows that LoRA already performs competitively with a very small r (more so for {Wq, Wv} than just Wq).<br>
@@ -51,12 +51,12 @@
     - `Empirical evidence shows that ranks 4~16 have peak performance in GPT2-medium.`
     - Quote from H.2, `The relationship between model size and the optimal rank for adaptation is still an open question.`
   
-<div align=center><img src="/figures/2106.09685.5.png" style="height: 130px; width: auto;"/></div>
-<div align=center><img src="/figures/2106.09685.6.png" style="height: 150px; width: auto;"/></div>
-<div align=center><img src="/figures/2106.09685.7.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.05.png" style="height: 130px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.06.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.07.png" style="height: 250px; width: auto;"/></div>
 
 ### 5. How to set Amplification Factor?
 - From the `equation in H.4`, for their experiments
     - `r = 4, Amplification Factor ~ 20`
     - `r = 64, Amplification Factor ~ 2`
-<div align=center><img src="/figures/2106.09685.8.png" style="height: 80px; width: auto;"/></div>
+<div align=center><img src="/figures/2106.09685.08.png" style="height: 80px; width: auto;"/></div>
