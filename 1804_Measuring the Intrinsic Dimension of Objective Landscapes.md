@@ -1,7 +1,7 @@
 # Measuring the Intrinsic Dimension of Objective Landscapes
 > [1804.08838](https://arxiv.org/abs/1804.08838)<br>
 > Intrinsic Dimension
-<div align=center><img src="/figures/1804.08838.1.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/1804.08838.01.png" style="height: 150px; width: auto;"/></div>
 
 ## Summary 
 1. Introducing subspace training to `measure intrinsic dimension`.
@@ -25,5 +25,5 @@
   > In CV, CNNs are more efficient architectures than FC
 2. Choosing the proper architecture for the task can have fewer intrinsic dimensions. 
   > Inverted pendulum w/ RL ~100× easier than MNIST w/ FC
-<div align=center><img src="/figures/1804.08838.2.png" style="height: 200px; width: auto;"/></div>
-<div align=center><img src="/figures/1804.08838.3.png" style="height: 300px; width: auto;"/></div>
+<div align=center><img src="/figures/1804.08838.02.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/1804.08838.03.png" style="height: 300px; width: auto;"/></div>
