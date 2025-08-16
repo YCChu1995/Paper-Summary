@@ -1,6 +1,6 @@
 # On the Stability of Fine-tuning BERT: Misconceptions, Explanations, and Strong Baselines
 > [2006.04884](https://arxiv.org/abs/2006.04884)<br>
-<div align=center><img src="/figures/2006.04884.1.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2006.04884.01.png" style="height: 250px; width: auto;"/></div>
 
 ## Summary 
 1. Debunk popular explanations: `Catastrophic forgetting and small data size are not the reason for fine-tuning instability.`
@@ -45,7 +45,7 @@
   &rarr; `Catastrophic forgetting is localized in the upper layers`, not the entire model.
 - The failed runs (c) never actually learn the downstream task (0.5 accuracy): their training loss remains at chance-level, and dev accuracy hovers at majority-class results.<br>
   &rarr; `The reasons for fail runs are optimization issues, not excessive forgetting.`
-<div align=center><img src="/figures/2006.04884.2.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2006.04884.02.png" style="height: 250px; width: auto;"/></div>
 
 ### 2. Dataset Size Analysis
 - Small data size w/ same iteration number &rarr; fewer total training steps &rarr; failed runs.<br>
@@ -53,7 +53,7 @@
   &rarr; When iteration count is restored, even a small sample yields stable fine-tuning comparable to using the full dataset.
   &rarr; It is the `reduced total training steps` (due to fewer examples per epoch) that lead to instability.
 - `Dataset Size is NOT the root cause of BERT fine‑tuning instability.`
-<div align=center><img src="/figures/2006.04884.3.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2006.04884.03.png" style="height: 250px; width: auto;"/></div>
 
 ### 3. Vanishing Gradient
 - Even with the same hyperparameters and initialization, lack of warm-up and bias correction leads to optimization failures.
@@ -61,11 +61,11 @@
   > Successful runs have decreasing vanishing gradients over training iterations.<br>
   
   &rarr; `Vanishing gradients, preventing effective learning, and then causing trials to fail.`
-<div align=center><img src="/figures/2006.04884.4.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2006.04884.04.png" style="height: 250px; width: auto;"/></div>
 
 ### 4. Generalization Variance (in accuracy among successful runs)
 - Even after escaping early-phase failures, each run follows its own generalization path.<br>
   Extended fine-tuning still yields notable accuracy variance across seeds, underscoring that `optimization isn't the only instability source; generalization differs too`.<br>
   &rarr; During training in successful runs, `accuracy doesn’t plateau early, and fluctuates significantly even late into training, oscillating between ~50% and ~75%`.
 - `Low training loss doesn’t guarantee high performance on unseen data.`
-<div align=center><img src="/figures/2006.04884.5.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/2006.04884.05.png" style="height: 250px; width: auto;"/></div>
