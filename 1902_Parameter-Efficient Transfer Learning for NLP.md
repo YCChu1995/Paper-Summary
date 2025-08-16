@@ -1,7 +1,7 @@
 # Measuring the Intrinsic Dimension of Objective Landscapes
 > [1902.00751](https://arxiv.org/abs/1902.00751)<br>
 > Adapter Module
-<div align=center><img src="/figures/1902.00751.1.png" style="height: 250px; width: auto;"/><img src="/figures/1902.00751.2.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/1902.00751.01.png" style="height: 250px; width: auto;"/><img src="/figures/1902.00751.02.png" style="height: 250px; width: auto;"/></div>
 
 ## Summary 
 1. `Bottleneck design reduces overhead` by projecting (down) hidden states into a small dimension (e.g., 64), applying nonlinearity, and projecting (up) back, then adding residually.
@@ -26,11 +26,11 @@ In the original BERT paper (Table 7), it shows that `fine-tuned pretrained-backb
 ### 1. Ablation Study [ FFT & Adapters ]
 - With only a few performance overhead (0.4~0.8 GLUE score), it saves a lot of parameters (96.4% ~ 97.9%)<br>
 
-<div align=center><img src="/figures/1902.00751.3.png" style="height: 100px; width: auto;"/></div>
+<div align=center><img src="/figures/1902.00751.03.png" style="height: 100px; width: auto;"/></div>
 
 ### 2. Ablation Study [ Remove adapters with a seq of adapters ]
 - This reinforces the notion that `upper layers specialize more for downstream tasks`, whereas `lower layers capture general features` that transfer well.
   - **Lower layers** (0–4): Ablating adapters in early layers barely hurts MNLI performance.
   - **Higher layers** (8–12): Removing adapters here causes a much larger drop.
 - Adapter size and weight init (Gaussian σ) show performance robustness within normal ranges, indicating stable training behavior.
-<div align=center><img src="/figures/1902.00751.4.png" style="height: 300px; width: auto;"/></div>
+<div align=center><img src="/figures/1902.00751.04.png" style="height: 300px; width: auto;"/></div>
