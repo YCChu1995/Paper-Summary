@@ -1,7 +1,7 @@
 # QA-LoRA: Quantization-Aware Low-Rank Adaptation of Large Language Models
 > [2309.14717](https://arxiv.org/abs/2309.14717)<br>
 > QA-LoRA
-<div align=center><img src="/figures/2309.14717.1.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2309.14717.01.png" style="height: 200px; width: auto;"/></div>
 
 ## Summary 
 Merge learned LoRA weights into quantized pretrained weights `without any quantization error` via the following two constraints.
@@ -21,4 +21,4 @@ Merge learned LoRA weights into quantized pretrained weights `without any quanti
 Existing quantization-aware fine‑tuning (QAT) methods either fine-tune all parameters (resource-heavy) or retain adapter precision, failing to deliver both accuracy and inference/numeric efficiency simultaneously.
 
 ## Chain Of Thought
-<div align=center><img src="/figures/2309.14717.2.png" style="height: 1400px; width: auto;"/></div>
+<div align=center><img src="/figures/2309.14717.02.png" style="height: 1400px; width: auto;"/></div>
