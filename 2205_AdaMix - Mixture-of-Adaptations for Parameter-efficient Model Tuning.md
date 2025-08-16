@@ -1,7 +1,7 @@
 # AdaMix: Mixture-of-Adaptations for Parameter-efficient Model Tuning
 > [2205.12410](https://arxiv.org/abs/2205.12410)<br>
 > AdaMix
-<div align=center><img src="/figures/2205.12410.1.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2205.12410.01.png" style="height: 150px; width: auto;"/></div>
 
 ## Summary 
 1. To increase adaptivity, set multiple adapter modules during training.
