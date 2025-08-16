@@ -1,7 +1,7 @@
 # QLORA: Efficient Finetuning of Quantized LLMs
 > [2305.14314](https://arxiv.org/abs/2305.14314)<br>
 > QLORA
-<div align=center><img src="/figures/2305.14314.1.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2305.14314.01.png" style="height: 200px; width: auto;"/></div>
 
 ## Summary 
 - Quantize the frozen pretrained model to NF4 via DQ.
@@ -10,11 +10,11 @@
   > LoRA adapters: Both Storage and Calculate in **BF16**.
   
 - LoRA
-<div align=center><img src="/figures/2305.14314.2.png" style="height: 30px; width: auto;"/></div>
+<div align=center><img src="/figures/2305.14314.02.png" style="height: 30px; width: auto;"/></div>
 
 - QLoRA
-<div align=center><img src="/figures/2305.14314.3.png" style="height: 30px; width: auto;"/></div>
-<div align=center><img src="/figures/2305.14314.4.png" style="height: 30px; width: auto;"/></div>
+<div align=center><img src="/figures/2305.14314.03.png" style="height: 30px; width: auto;"/></div>
+<div align=center><img src="/figures/2305.14314.04.png" style="height: 30px; width: auto;"/></div>
 
 ## Tech Insights 
 1. NF4 to save memory footprint.
