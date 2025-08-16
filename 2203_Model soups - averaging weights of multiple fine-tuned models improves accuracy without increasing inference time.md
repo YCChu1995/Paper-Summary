@@ -1,7 +1,7 @@
 # Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference time
 > [2203.05482](https://arxiv.org/abs/2203.05482)<br>
 > Model soups
-<div align=center><img src="/figures/2203.05482.1.png" style="height: 200px; width: auto;"/></div>
+<div align=center><img src="/figures/2203.05482.01.png" style="height: 200px; width: auto;"/></div>
 
 ## Summary 
 Averaging over FT models yields better generalization: 
