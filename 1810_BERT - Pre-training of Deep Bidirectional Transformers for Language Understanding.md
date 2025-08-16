@@ -1,7 +1,7 @@
 # BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 > [1810.04805](https://arxiv.org/abs/1810.04805)<br>
 > BERT
-<div align=center><img src="/figures/1810.04805.1.png" style="height: 250px; width: auto;"/> <img src="/figures/1810.04805.2.png" style="height: 250px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.01.png" style="height: 250px; width: auto;"/> <img src="/figures/1810.04805.02.png" style="height: 250px; width: auto;"/></div>
 
 ## Summary 
 1. **Architecture**: `Bidirectional Encoder` (only the encoder from Transformer)
@@ -37,8 +37,8 @@
 - `Token embeddings` (from vocabulary Lookup)
 - `Segment embeddings` (indicating sentence tag, A or B)
 - `Position embeddings` (`absolute positional embeddings, a trainable embedding matrix` (e.g. 512 positions × 768 dims for BERT‑Base), learned during pre-training)
-<div align=center><img src="/figures/1810.04805.3.png" style="height: 150px; width: auto;"/></div>
-<div align=center><img src="/figures/1810.04805.4.png" style="height: 300px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.03.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.04.png" style="height: 300px; width: auto;"/></div>
 
 ### 3. Pretraining Tasks & Objectives
 - Joint Training<br>
@@ -64,4 +64,4 @@
       
 ### 4. Ablation for Different Masking Procedures
 - `MLM converges more slowly but surpasses LTR almost immediately.`
-<div align=center><img src="/figures/1810.04805.5.png" style="height: 300px; width: auto;"/></div>
+<div align=center><img src="/figures/1810.04805.05.png" style="height: 300px; width: auto;"/></div>
