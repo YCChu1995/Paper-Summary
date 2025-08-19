@@ -25,11 +25,31 @@
    > English + small amounts of German/French/Romanian
 4. Dataset : Colossal Clean Crawled Corpus (C4)
    > ~750GB filtered, hundreds of GBs of English
+5. Training Strategy
+   1. Pre-training Unsupervised Objectives
+      - Combination Picked: `BERT-style` + `Replace Spans` + `Corruption Rate: 15%` + `Avg Corrupted Span Length: 3`
+   2. Pre-training Datasets
+      - `Cleaning matters`, heuristic filtering improves downstream transfer performance
+      - `Domain-specific data can outperform broader data`, but with trade-off between domain alignment and data scale/diversity.
+      - `Diversity is important`, therefore `repetition isn’t enough`.
+   3. Fine-Tuning Strategy
+      - `Full fine-tuning` has better performance than the `adapter` module.
+      - `MTL works, but how the data are mixed should be tuned as a hyperparameter.`
+         > `Temperature-scaled mixing (with tuned T) outperforms` naive proportional mixing.
+   4. Combined Training Strategy
+      - `Multi-task pretraining` + `fine-tuning` achieves `comparable performance` to the `standard baseline` (pretraining + fine-tuning) with more efficiency
 
 ## Tech Insights 
-1. `MTL works, but how data are mixed should be tuned as a hyperparameter.`
-2. Scaling `Model Size` and `Pretraining Steps`, not `Ensembling`.
-3. `Architectural` and `methodological` refinements are as important as `scaling`. 
+1. For the pre-training dataset
+   - `Cleaning matters`, heuristic filtering improves downstream transfer performance
+   - `Domain-specific data can outperform broader data`, but with trade-off between domain alignment and data scale/diversity.
+   - `Diversity is important`, therefore `repetition isn’t enough`.
+2. For the fine-tuning strategy
+   - `MTL works, but how the data are mixed should be tuned as a hyperparameter.`
+      > `Temperature-scaled mixing (with tuned T) outperforms` naive proportional mixing.
+3. For the `scaling`
+   - Scaling `Model Size` and `Pretraining Steps`, over `Ensembling`.
+   - `Architectural` and `methodological` refinements are as important as `scaling`. 
 
 ---
 
@@ -92,16 +112,16 @@ The field lacked a standard experimental bed to compare choices.
 
 #### 2-2. Pre-training Datasets
 ##### 2-2-1. Different Corpora
-- Cleaning matters, `heuristic filtering improves downstream transfer performance`.
-- Domain-specific data can outperform broader data, but with trade-off between domain alignment and data scale/diversity.
+-` Cleaning matters`, heuristic filtering improves downstream transfer performance.
+- `Domain-specific data can outperform broader data`, but with trade-off between domain alignment and data scale/diversity.
 <div align=center><img src="/figures/1910.10683.09.png" style="height: 110px; width: auto;"/></div> 
 
 ##### 2-2-2. Dataset Size & Repetition
-- `Repetition isn’t enough`, because of overfitting.
+- `Diversity is important`, therefore `repetition isn’t enough`.
   > As the dataset size shrinks (requiring more repetition), downstream performance drops across all benchmarks.
 <div align=center><img src="/figures/1910.10683.10.png" style="height: 150px; width: auto;"/> <img src="/figures/1910.10683.11.png" style="height: 150px; width: auto;"/></div> 
 
-#### 2-3. Training Strategy
+#### 2-3. Fine-Tuning Strategy
 > `Multi-Task Pretraining` + `Fine-Tuning` achieves comparable performance to the standard baseline (`Pretraining` + `Fine-Tuning`).
 
 ##### 2-3-1. Fine-Tuning Methods
@@ -115,10 +135,10 @@ The field lacked a standard experimental bed to compare choices.
 - `Temperature-scaled mixing (T=2) outperforms` naive proportional mixing.
 <div align=center><img src="/figures/1910.10683.13.png" style="height: 200px; width: auto;"/></div>
 
-##### 2-3-3. Combining MTL with Fine-Tuning
+#### 2-4. Combined Training Strategy
 - `Multi-task pretraining` + `fine-tuning` achieves `comparable performance` to the standard baseline (pretraining + fine-tuning per downstream task)
 - Leave-one-out multi-task doesn't significantly degrade performance, indicating `positive transfer among tasks`.
-- `Pretraining is crucial for downstream performance.` (Because relying solely on supervised multi-task training degrades performance).
+- `Pretraining is crucial for downstream performance.` (Because relying solely on supervised multi-task training without fine-tuning degrades performance).
 - Although certain well-populated tasks like `translation remain relatively robust`, suggesting less dependency on massive unlabeled pretraining for those tasks.
 <div align=center><img src="/figures/1910.10683.14.png" style="height: 100px; width: auto;"/></div>
 
