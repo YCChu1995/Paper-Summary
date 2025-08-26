@@ -29,5 +29,10 @@ https://arxiv.org/abs/2410.02247
 - [2311.09578] Tied‑LoRA
 - [2402.09353] DoRA (Hard)
 
-### 5. Relative Position Embeddings _over_ Sinusoidal or Learned position embeddings
+### 5. Scaling Laws
+- [1812.06162] An Empirical Model of Large-Batch Training
+- [2001.08361] Scaling Laws for Neural Language Models
+- [2203.15556] Training Compute-Optimal Large Language Models
+
+### 6. Relative Position Embeddings _over_ Sinusoidal or Learned position embeddings
 - [1803.02155] Self-Attention with Relative Position Representations
