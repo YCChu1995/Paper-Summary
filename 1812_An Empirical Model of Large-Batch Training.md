@@ -35,8 +35,8 @@ $$T\equiv \frac{\eta}{B}$$
 ---
 
 ## Motivation 
-1. `There should be a predictive, task-agnostic rule for choosing a batch size`, which would deliver near-linear parallel speedups instead of becoming compute-wasteful. 
-   > Different domains reported very different **max useful** batch sizes (e.g., ~10^3–10^4 for ImageNet vs. ~10^6 in RL/Dota) 
+`There should be a predictive, task-agnostic rule for choosing a batch size`, which would deliver near-linear parallel speedups instead of becoming compute-wasteful. 
+> Different domains reported very different **max useful** batch sizes (e.g., ~10^3–10^4 for ImageNet vs. ~10^6 in RL/Dota) 
 
 ## Chain of Thoughts
 ### 1. The Conceptual Setup: “Signal” vs. “Noise” in Gradients
