@@ -14,6 +14,8 @@
 ## Motivation 
 1. 
 
+## Chain of Thoughts
+
 ## Experiment
 ### 1.
 ### 2. 
