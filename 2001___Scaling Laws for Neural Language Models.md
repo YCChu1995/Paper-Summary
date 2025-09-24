@@ -6,17 +6,6 @@
 
 ## Summary 
 
-### 7. Convergence is inefficient
-- With a `fixed compute budget C`, `unlimited model size N or available data D`, the best strategy is to train `a very large model` and `reach the target performance before convergence` to maximize the compute-efficiency.
-  - Because training in convergence is very compute-inefficient. (Figure 2 - Right) 
-- 
-When working within a  but without any other restrictions on the model size N or available data D, we attain optimal performance by training very large models
-and stopping significantly short of convergence (see Figure 3). Maximally compute-efficient training would
-therefore be far more sample efficient than one might expect based on training small models to convergence,
-with data requirements growing very slowly as D ∼ C
-0.27 with training compute. (Section 6)
-
-<div align=center><img src="/figures/2001.08361.02.png" style="height: 200px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 200px; width: auto;"/></div>
 
 - Optimal batch size
 The ideal batch size for training these models is roughly a power of the loss only,
@@ -34,9 +23,10 @@ tokens at convergence for the largest models we can train. (Section 5.1)
    - In FLOP counting, a multiply-add is counted as `2 FLOPs`
    
 2. Architecture shape (depth vs width) matters much less than sheer scale (parameter count).
-3. `Larger models are more sample-efficient` (reach a given loss with fewer steps/tokens).
-4. For a fixed compute budget, `the optimal strategy is to make the model very large and stop well before convergence` (i.e., early stopping yields best compute efficiency).
-5. Improving `in-distribution` test performance also improves `out-distribution` performance, with a `gradually widening offset`.
+3. Training `larger models`  way `before convergence` are `more efficient` in compute and sample-usage. (To reach a given loss with fewer steps/tokens)
+4. For a fixed compute budget, the `optimal strategy` is to make a very `large model` and reach the target loss `before convergence`.
+5. Improving `in-distribution` test performance also improves `out-distribution` performance with a `gradually widening offset`. (and generalization across domains)<br>
+   Better `out-distribution` performance &rarr; Better `generalization across domains`
    > Be careful about the gradually widening [offset](#5-transfer-improves-with-test-performance).
 ---
 
@@ -57,17 +47,17 @@ tokens at convergence for the largest models we can train. (Section 5.1)
   - `weakly` on other `architectural hyperparameters` such as depth or width, within reasonable limits. (Figure 5)
   - `strongly` on scale, which consists of three factors: `the number of model parameters N` (excluding embeddings, Figure 6), `the size of the dataset D`, and `the amount of compute C` used for training.
   
-<div align=center><img src="/figures/2001.08361.05.png" style="height: 150px; width: auto;"/> <img src="/figures/2001.08361.06.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2001.08361.05.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.06.png" style="height: 180px; width: auto;"/></div>
 
 ### 2. Smooth power laws
 - Performance has a `power-law` relationship with each of the three scale factors N, D, C when not bottlenecked by the other two, with trends spanning more than six orders of magnitude. (Figure 1)
   > We observe no signs of deviation from these trends on the upper end, though performance must flatten out eventually before reaching zero loss. (Figure 7)
 
-<div align=center><img src="/figures/2001.08361.01.png" style="height: 150px; width: auto;"/> <img src="/figures/2001.08361.07.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2001.08361.01.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.07.png" style="height: 180px; width: auto;"/></div>
 
 ### 3. Universality of overfitting
 - `Scale up N and D in tandem` &rarr; `Performance improves predictably` (Figure 4)<br>
-  `Scale only N or D while the other is held fixed` &rarr; `Diminishing returns`<br>
+  `Scale only N or D while the other is held fixed` &rarr; `Diminishing returns` (Figure 4)<br>
 - To avoid overfitting,
   1. Dataset size D should be around greater than $(5\times 10^{3})N^{0.74}$
   2. Scale the model size 8x and the data 5x to follow the ratio $\frac{N^{0.74}}{D}$
@@ -89,7 +79,7 @@ $$L(N,D)= \left[ \left( \frac{N_{c}}{N} \right)^{\frac {\alpha_{N}}{\alpha_{D}}}
   
 - The `out-distribution` test performance depends
   - `strongly` on the `in-distribution` test performance (Figure 8 - Right)
-  - `weakly` on the `training duration` or `convergence`<br>
+  - `weakly` on the `training duration` or `convergence` (Figure 8 - Right)<br>
     &rarr; training much longer for `convergence` won't help `out-distribution` test performance
 
 - Improving `in-distribution` test performance also improves `out-distribution` performance. 
@@ -98,8 +88,15 @@ $$L(N,D)= \left[ \left( \frac{N_{c}}{N} \right)^{\frac {\alpha_{N}}{\alpha_{D}}}
 <div align=center><img src="/figures/2001.08361.08.png" style="height: 200px; width: auto;"/></div>
 
 ### 6. Sample efficiency
-- Large models are more sample-efficient, reaching the same level of performance with
-    - fewer optimization steps (Figure 2 - Left)
-    - fewer data points (Figure 4).
+- `Large models` are `more efficient` in compute (Figure 2 - Right) and sample-usage, reaching the same level of performance with
+    - fewer optimization steps (Figure 2 - Left & Figure 4 - Right)
+    - fewer data points (Figure 4 - Left).
 
 <div align=center><img src="/figures/2001.08361.02.png" style="height: 200px; width: auto;"/> <img src="/figures/2001.08361.04.png" style="height: 200px; width: auto;"/></div>
+
+### 7. Convergence is inefficient
+- The best strategy is to train `a very large model` and `reach the target performance before convergence` to maximize the compute-efficiency,for a `fixed compute budget C`, `unlimited model size N` or `available data D`. (Figure 3) 
+  - Because training to `convergence` is very `inefficient` in both compute and sample-usage. (Figure 2)
+  - `Data requirements growing very slowly` wrt training compute, $D \sim C^{0.27}$. (Section 6)
+
+<div align=center><img src="/figures/2001.08361.02.png" style="height: 200px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 200px; width: auto;"/></div>
