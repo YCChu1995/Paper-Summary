@@ -1,16 +1,9 @@
 # Scaling Laws for Neural Language Models
 > [2001.08361](https://arxiv.org/abs/2001.08361)<br>
-<div align=center><img src="/figures/2001.08361.01.png" style="height: 150px; width: auto;"/></div>
-
+<div align=center><img src="/figures/2001.08361.01.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 180px; width: auto;"/></div>
 
 
 ## Summary 
-
-
-- Optimal batch size
-The ideal batch size for training these models is roughly a power of the loss only,
-and continues to be determinable by measuring the gradient noise scale [MKAT18]; it is roughly 1-2 million
-tokens at convergence for the largest models we can train. (Section 5.1) 
 
 ## Tech Insights 
 1. The compute $C$ is defined as $6NBS_{FLOPs}$, $C\approx 6NBS$.
@@ -25,9 +18,13 @@ tokens at convergence for the largest models we can train. (Section 5.1)
 2. Architecture shape (depth vs width) matters much less than sheer scale (parameter count).
 3. Training `larger models`  way `before convergence` are `more efficient` in compute and sample-usage. (To reach a given loss with fewer steps/tokens)
 4. For a fixed compute budget, the `optimal strategy` is to make a very `large model` and reach the target loss `before convergence`.
-5. Improving `in-distribution` test performance also improves `out-distribution` performance with a `gradually widening offset`. (and generalization across domains)<br>
+5. Improving `in-distribution` test performance also improves `out-distribution` performance with a `gradually widening offset`. (and `generalization across domains`)<br>
    Better `out-distribution` performance &rarr; Better `generalization across domains`
    > Be careful about the gradually widening [offset](#5-transfer-improves-with-test-performance).
+6. The ideal batch size for training these models can
+   - be `initialized` as roughly `a power of the loss` only,
+   - be `continuesly modified` by measuring the `gradient noise scale`.
+7. `Indicator to overfitting` is defined as $"\frac {L(N,D)}{L(N,\infty )} - 1"$ which is a function of $\frac{N^{\frac {\alpha_{N}}{\alpha_{D}}}}{D}$. (Figure 9 - [Right](#3-universality-of-overfitting))
 ---
 
 ## Motivation 
@@ -56,15 +53,17 @@ tokens at convergence for the largest models we can train. (Section 5.1)
 <div align=center><img src="/figures/2001.08361.01.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.07.png" style="height: 180px; width: auto;"/></div>
 
 ### 3. Universality of overfitting
-- `Scale up N and D in tandem` &rarr; `Performance improves predictably` (Figure 4)<br>
-  `Scale only N or D while the other is held fixed` &rarr; `Diminishing returns` (Figure 4)<br>
-- To avoid overfitting,
-  1. Dataset size D should be around greater than $(5\times 10^{3})N^{0.74}$
-  2. Scale the model size 8x and the data 5x to follow the ratio $\frac{N^{0.74}}{D}$
+- `Scale up N and D in tandem` &rarr; `Performance improves predictably` (Figure 4, Figure 9)<br>
+  `Scale only N or D while the other is held fixed` &rarr; `Diminishing returns` (Figure 4, Figure 9)
+- `Indicator to overfitting` is defined as $"\frac {L(N,D)}{L(N,\infty )} - 1"$ which is a function of $\frac{N^{\frac {\alpha_{N}}{\alpha_{D}}}}{D}$. (Figure 9 - Right)
+- To avoid overfitting, 
+  1. dataset size D should be `initialized` roughly greater than $(5\times 10^{3})N^{0.74}$
+  2. `continuously modified` the model size N 8x and the data size D 5x to follow the ratio $\frac{N^{\frac {\alpha_{N}}{\alpha_{D}}}}{D} = \frac{N^{0.74}}{D}$
 
-$$L(N,D)= \left[ \left( \frac{N_{c}}{N} \right)^{\frac {\alpha_{N}}{\alpha_{D}}} + \left( \frac{D_{c}}{D} \right)  \right] ^{\alpha_{D}} \to  ratio = \frac{N^{\frac{\alpha_{N}}{\alpha_{D}}}}{D} = \frac{N^{0.74}}{D} \to D > (5\times 10^{3})N^{0.74}$$
 
-<div align=center><img src="/figures/2001.08361.04.png" style="height: 200px; width: auto;"/></div>
+$${\color{Cyan} \frac {L(N,D)}{L(N,\infty )} - 1} = \frac {L(N,D)-L(N,\infty )}{L(N,\infty )} = {\color{Cyan} f\left( \frac { N^{\frac {\alpha_{N}}{\alpha_{D}}}}{ D }\right)}；f(x) = \left[1 + \left( \frac {D_{C}}{ { N_{C} }^{\frac {\alpha_{N}}{\alpha_{D}}}}\right) \left( \frac { N^{\frac {\alpha_{N}}{\alpha_{D}}}}{ D }\right) \right] ^{\alpha_{D}}-1$$
+
+<div align=center><img src="/figures/2001.08361.04.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.09.png" style="height: 180px; width: auto;"/></div>
 
 ### 4. Universality of training
 - Training curves follow `predictable power-laws` whose parameters are `roughly independent of the model size`.<br>
@@ -100,3 +99,9 @@ $$L(N,D)= \left[ \left( \frac{N_{c}}{N} \right)^{\frac {\alpha_{N}}{\alpha_{D}}}
   - `Data requirements growing very slowly` wrt training compute, $D \sim C^{0.27}$. (Section 6)
 
 <div align=center><img src="/figures/2001.08361.02.png" style="height: 200px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 200px; width: auto;"/></div>
+
+### 8.  Optimal batch size
+- The ideal batch size for training these models can
+   - be `initialized` as roughly `a power of the loss` only,
+   - be `continuesly modified` by measuring the `gradient noise scale`.
+   > It is roughly 1-2 million tokens at convergence for the largest models we can train. (Section 5.1) 
