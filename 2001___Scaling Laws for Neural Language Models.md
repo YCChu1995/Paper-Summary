@@ -2,6 +2,15 @@
 > [2001.08361](https://arxiv.org/abs/2001.08361)<br>
 <div align=center><img src="/figures/2001.08361.01.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 180px; width: auto;"/></div>
 
+### 9. Optimal Model Size (under fixed compute budget)
+- For a fixed compute budget, there is an `optimal model size` with minimum compute requirement. (Figure 11 - Left)
+- Though models differ in size, their `local geometry in late training behaves “similarly”`.
+  > Because the loss vs 𝑁 curves under fixed S or fixed C seem to follow the same functional exponents across sizes, the authors argue that this suggests that `the shape of loss curvature (i.e. Hessian eigenvalue density) is—not dramatically varying with N`. (Figure 11)
+- Training with none-optimal model size will require
+  - excess compute (Figure 12 - Left)
+  - excess steps for smaller model size but few steps for larger model size(Figure 12 - Right)
+
+<div align=center><img src="/figures/2001.08361.11.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.12.png" style="height: 180px; width: auto;"/></div>
 
 ## Summary 
 
@@ -25,11 +34,11 @@
    - be `initialized` as roughly `a power of the loss` only,
    - be `continuesly modified` by measuring the `gradient noise scale`.
 7. `Indicator to overfitting` is defined as $"\frac {L(N,D)}{L(N,\infty )} - 1"$ which is a function of $\frac{N^{\frac {\alpha_{N}}{\alpha_{D}}}}{D}$. (Figure 9 - [Right](#3-universality-of-overfitting))
+   
 ---
 
 ## Motivation 
 - There is no simple, predictive, quantitative recipe for how a language model `performance scales` with (1) `model size`, (2) `dataset size`, and (3) `compute`.
-  > Before this work, extrapolating gains by `training small models and predicting large model behavior was unreliable`. 
 - Before this work,
   1. `Predicting large model behavior by extrapolating gains from training small models` was `unreliable`.
   2. Uncertainty in how to spend extra budget.<br>
@@ -67,7 +76,9 @@ $${\color{Cyan} \frac {L(N,D)}{L(N,\infty )} - 1} = \frac {L(N,D)-L(N,\infty )}{
 
 ### 4. Universality of training
 - Training curves follow `predictable power-laws` whose parameters are `roughly independent of the model size`.<br>
-  To `predict the training loss` after training, we can `extrapolate the early part` of the training curve.
+  To `predict the training loss` after training, we can `extrapolate` the long-run from the early part of the training curve.(Figtur)
+
+
 
 ### 5. Transfer improves with test performance
 - `Out-Distribution` Test Loss ~ `In-Distribution` Test Loss + `Offest`<br>
@@ -88,20 +99,26 @@ $${\color{Cyan} \frac {L(N,D)}{L(N,\infty )} - 1} = \frac {L(N,D)-L(N,\infty )}{
 
 ### 6. Sample efficiency
 - `Large models` are `more efficient` in compute (Figure 2 - Right) and sample-usage, reaching the same level of performance with
-    - fewer optimization steps (Figure 2 - Left & Figure 4 - Right)
+    - fewer optimization steps (Figure 2 - Left, Figure 4 - Right)
     - fewer data points (Figure 4 - Left).
 
 <div align=center><img src="/figures/2001.08361.02.png" style="height: 200px; width: auto;"/> <img src="/figures/2001.08361.04.png" style="height: 200px; width: auto;"/></div>
 
 ### 7. Convergence is inefficient
-- The best strategy is to train `a very large model` and `reach the target performance before convergence` to maximize the compute-efficiency,for a `fixed compute budget C`, `unlimited model size N` or `available data D`. (Figure 3) 
+- The best strategy is to train `a large model` and `reach the target performance before convergence` to maximize the compute-efficiency,for a `fixed compute budget C`, `unlimited model size N` or `available data D`. (Figure 3) 
   - Because training to `convergence` is very `inefficient` in both compute and sample-usage. (Figure 2)
   - `Data requirements growing very slowly` wrt training compute, $D \sim C^{0.27}$. (Section 6)
+  - There is an `optimal model size N` for a fix compute budge. (Figure 11 - Left)
 
 <div align=center><img src="/figures/2001.08361.02.png" style="height: 200px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 200px; width: auto;"/></div>
 
 ### 8.  Optimal batch size
-- The ideal batch size for training these models can
-   - be `initialized` as roughly `a power of the loss` only,
-   - be `continuesly modified` by measuring the `gradient noise scale`.
-   > It is roughly 1-2 million tokens at convergence for the largest models we can train. (Section 5.1) 
+- The ideal batch size for training these models can be estimated be the following approaches.
+   1. Following the `power-law` relation with `training loss only`, without `model size`. (As proposed in the pervious paper on gradient noise scale.)
+   2. Closing to the measured `gradient noise scale`, which is a great sanity check for how to increase batch size during training.
+   
+$$B_{crit}(L) = \frac {B_\ast }{L^{\frac {1}{\alpha_B}}}，B_\ast \approx 2\times10^8，\alpha_B\approx 0.21$$
+
+<div align=center><img src="/figures/2001.08361.10.png" style="height: 200px; width: auto;"/></div>
+
+
