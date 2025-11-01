@@ -2,17 +2,8 @@
 > [2001.08361](https://arxiv.org/abs/2001.08361)<br>
 <div align=center><img src="/figures/2001.08361.01.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 180px; width: auto;"/></div>
 
-### 9. Optimal Model Size (under fixed compute budget)
-- For a fixed compute budget, there is an `optimal model size` with minimum compute requirement. (Figure 11 - Left)
-- Though models differ in size, their `local geometry in late training behaves “similarly”`.
-  > Because the loss vs 𝑁 curves under fixed S or fixed C seem to follow the same functional exponents across sizes, the authors argue that this suggests that `the shape of loss curvature (i.e. Hessian eigenvalue density) is—not dramatically varying with N`. (Figure 11)
-- Training with none-optimal model size will require
-  - excess compute (Figure 12 - Left)
-  - excess steps for smaller model size but few steps for larger model size(Figure 12 - Right)
-
-<div align=center><img src="/figures/2001.08361.11.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.12.png" style="height: 180px; width: auto;"/></div>
-
 ## Summary 
+
 
 ## Tech Insights 
 1. The compute $C$ is defined as $6NBS_{FLOPs}$, $C\approx 6NBS$.
@@ -121,4 +112,12 @@ $$B_{crit}(L) = \frac {B_\ast }{L^{\frac {1}{\alpha_B}}}，B_\ast \approx 2\time
 
 <div align=center><img src="/figures/2001.08361.10.png" style="height: 200px; width: auto;"/></div>
 
+### 9. Optimal Model Size (under fixed compute budget)
+- For a fixed compute budget, there is an `optimal model size` with minimum compute requirement. (Figure 11 - Left)
+- Though models differ in size, their `local geometry in late training behaves “similarly”`.
+  > Because the loss vs 𝑁 curves under fixed S or fixed C seem to follow the same functional exponents across sizes, the authors argue that this suggests that `the shape of loss curvature (i.e. Hessian eigenvalue density) is—not dramatically varying with N`. (Figure 11)
+- Training with none-optimal model size will require
+  - excess compute (Figure 12 - Left)
+  - excess steps for smaller model size but few steps for larger model size(Figure 12 - Right)
 
+<div align=center><img src="/figures/2001.08361.11.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.12.png" style="height: 180px; width: auto;"/></div>
