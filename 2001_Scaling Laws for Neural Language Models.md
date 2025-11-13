@@ -2,8 +2,10 @@
 > [2001.08361](https://arxiv.org/abs/2001.08361)<br>
 <div align=center><img src="/figures/2001.08361.01.png" style="height: 180px; width: auto;"/> <img src="/figures/2001.08361.03.png" style="height: 180px; width: auto;"/></div>
 
-## Summary 
-Given a **10×** increased **computational budget**, the **size of the model** should increase **5.5×** while the **number of training tokens** should only increase **1.8×**.
+## Summary
+Given a **10×** increased **computational budget**, the **size of the model** should increase **5.4×** while the **number of training tokens** should only increase **1.8×**.
+
+$$B_{opt} \propto C^{0.73}, N_{opt} \propto C^{0.27}$$
 
 <div align=center><img src="/figures/2001.08361.51.png" style="height: 150px; width: auto;"/> <img src="/figures/2001.08361.52.png" style="height: 150px; width: auto;"/></div>
 
