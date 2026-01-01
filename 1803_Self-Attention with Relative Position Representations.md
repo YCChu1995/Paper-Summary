@@ -13,6 +13,8 @@
 | Softmax                | $$a_{ij} = \frac{ exp(e_{ij}) }{ \sum_{k=1}^{n} exp(e_{ik}) }$$ | Same |
 | Context matrix         | $$z_{i} = \sum_{j}a_{ij}(x_{j}W^{V})$$ | $$z_{i} = \sum_{j}a_{ij}(x_{j}W^{V}+\alpha_{ij}^{V})$$ |
 
+<div align=center><img src="/figures/1803.02155.T2.png" style="height: 150px; width: auto;"/></div>
+
 2. Clipping Distance<br>
    They hypothesized that precise relative position information is `not useful beyond a certain distance`.
    Their experimental result (Table 2) verifies that the distance threshold is short (2).
@@ -20,7 +22,7 @@
  $$\alpha_{ij} = w_{clip(j-i, k)}$$
  $$clip(x, k) = max(-k, min(k, x))$$
   
-   <div align=center><img src="/figures/1803.02155.T2.png" style="height: 150px; width: auto;"/></div>
+   <div align=center><img src="/figures/1803.02155.T1.png" style="height: 150px; width: auto;"/></div>
 
 3. Ablating Relative Position Embedding<br>
    Despite the ablation study, they think further work is needed to determine whether this is true for other tasks.
