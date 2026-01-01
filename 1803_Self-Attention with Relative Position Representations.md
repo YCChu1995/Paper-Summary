@@ -1,11 +1,13 @@
 # Self-Attention with Relative Position Representations
 > [1803.02155](https://arxiv.org/abs/1803.02155)<br>
 
-<div align=center><img src="/figures/1803.02155.01.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/1803.02155.01.png" style="height: 200px; width: auto;"/></div>
 
 ## Summary 
 1. Architecture<br>
    Both $\alpha_{ij}^{K}$ and $\alpha_{ij}^{V}$ are learned matricies for `relative position embedding`.
+
+<div align="center">   
    
 | Block                  | Standard Self-Attention       | Relation-Aware Self-Attention |
 | :--------------------: | :---------------------------: | :---------------------------: |
@@ -13,7 +15,9 @@
 | Softmax                | $$a_{ij} = \frac{ exp(e_{ij}) }{ \sum_{k=1}^{n} exp(e_{ik}) }$$ | Same |
 | Context matrix         | $$z_{i} = \sum_{j}a_{ij}(x_{j}W^{V})$$ | $$z_{i} = \sum_{j}a_{ij}(x_{j}W^{V}+\alpha_{ij}^{V})$$ |
 
-<div align=center><img src="/figures/1803.02155.T1.png" style="height: 150px; width: auto;"/></div>
+</div>
+
+<div align=center><img src="/figures/1803.02155.T1.png" style="height: 100px; width: auto;"/></div>
 
 2. Clipping Distance<br>
    They hypothesized that precise relative position information is `not useful beyond a certain distance`.
@@ -27,7 +31,7 @@
 3. Ablating Relative Position Embedding<br>
    Despite the ablation study, they think further work is needed to determine whether this is true for other tasks.
 
-   <div align=center><img src="/figures/1803.02155.T3.png" style="height: 150px; width: auto;"/></div>
+   <div align=center><img src="/figures/1803.02155.T3.png" style="height: 100px; width: auto;"/></div>
    
 4. Efficient Implementation<br>
    Sharing parameters `across heads`
