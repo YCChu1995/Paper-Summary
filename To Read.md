@@ -38,5 +38,3 @@ https://arxiv.org/abs/2410.02247
 - [2001.08361] Scaling Laws for Neural Language Models
 - [2203.15556] Training Compute-Optimal Large Language Models
 
-### 6. Relative Position Embeddings _over_ Sinusoidal or Learned position embeddings
-- [1803.02155] Self-Attention with Relative Position Representations
