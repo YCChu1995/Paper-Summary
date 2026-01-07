@@ -1,7 +1,7 @@
 # RoFormer: Enhanced Transformer with Rotary Position Embedding
 > [2104.09864](https://arxiv.org/abs/2104.09864)<br>
 > RoPE
-<div align=center><img src="/figures/2104.09864.01.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2104.09864.01.png" style="height: 250px; width: auto;"/></div>
 
 ## Summary 
 - RoPE is a `multiplicative` positional encoding with `NO trainable` parameters, which maintains norms of representations (stable and efficient).
