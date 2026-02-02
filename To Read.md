@@ -1,7 +1,6 @@
 1. [2506.02153](https://arxiv.org/abs/2506.02153) Small Language Models are the Future of Agentic AI
 2. [2410.06205](https://arxiv.org/abs/2410.06205) Why RoPE is useful?
 
-
 ### 1. FT Instability from BERT to T5 & GPT
 The high generalization variance leads to fine-tuning Instability in BERT, from the read paper in file, [ON THE STABILITY OF FINE-TUNING BERT: MISCONCEPTIONS, EXPLANATIONS, AND STRONG BASELINES](https://github.com/YCChu1995/Paper-Summary/blob/main/2006_On%20the%20Stability%20of%20Fine-tuning%20BERT%20-%20Misconceptions%2C%20Explanations%2C%20and%20Strong%20Baselines.md)<br>
 The high generalization variance is also found in T5 and GPT.
@@ -28,13 +27,22 @@ https://arxiv.org/abs/2410.02247
 - [2105.15179] "How transfer learning impacts linguistic knowledge in deep NLP models?"
     - Investigating linguistic probing tasks on BERT/RoBERTa/XLNet, they conclude: core linguistic knowledge shifts towards lower layers after fine-tuning, while higher layers become more task-specific.
 
-### 4. LoRA follow-ups
-- [2310.11454] VeRA
-- [2311.09578] Tied‑LoRA
-- [2402.09353] DoRA (Hard)
-
-### 5. Scaling Laws
+### 4. Scaling Laws
 - [1812.06162] An Empirical Model of Large-Batch Training
 - [2001.08361] Scaling Laws for Neural Language Models
 - [2203.15556] Training Compute-Optimal Large Language Models
 
+### 4. Monosemanticity
+- [2310](https://www.anthropic.com/research/towards-monosemanticity-decomposing-language-models-with-dictionary-learning) Towards Monosemanticity: Decomposing Language Models With Dictionary Learning
+- [2309](https://arxiv.org/abs/2309.08600) Sparse Autoencoders Find Highly Interpretable Features in Language Models
+- [2408](https://arxiv.org/abs/2408.05147) Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2
+- [2405](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html) Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet
+- [2501](https://arxiv.org/abs/2501.17148) AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders
+- [2506](https://arxiv.org/abs/2506.19382) Measuring and Guiding Monosemanticity
+
+### 5. Model Steering
+- [2308](https://arxiv.org/abs/2308.10248) Steering Language Models With Activation Engineering
+- [2406](https://arxiv.org/abs/2406.00045) **Personalized Steering** Personalized Steering of Large Language Models: Versatile Steering Vectors Through Bi-directional Preference Optimization
+- [2501](https://arxiv.org/abs/2501.09929) **Contrastive Activation Steering** Interpretable Steering of Large Language Models with Feature Guided Activation Additions
+- [2505](https://arxiv.org/abs/2505.06699) **Reference Model Steering** Model Steering: Learning with a Reference Model Improves Generalization Bounds and Scaling Laws
+- [2511](https://arxiv.org/abs/2511.05408) **Weight-space Steering** Steering Language Models with Weight Arithmetic
