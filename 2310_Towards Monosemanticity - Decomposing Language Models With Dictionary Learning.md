@@ -9,7 +9,7 @@ Using `sparse`, `overcomplete` autoencoder to learn (decompose) `monosementic` f
 
 ## Tech Insights 
 1. [Tips to train SAE](#tips-to-train-sae)
-2. [Metrics to measure SAE](#metrics-to-measure-sae-far-from-perfect))
+2. [Metrics to measure SAE](#metrics-to-measure-sae-far-from-perfect)
 ---
 
 ## Motivation 
