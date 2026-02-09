@@ -1,5 +1,5 @@
 # Towards Monosemanticity: Decomposing Language Models With Dictionary Learning
-> [2310.anthropic]([https://arxiv.org/abs/](https://transformer-circuits.pub/2023/monosemantic-features/index.html))<br>
+> [2310.anthropic](https://transformer-circuits.pub/2023/monosemantic-features/index.html)<br>
 <div align=center><img src="/figures/2310.anthropic.03.png" style="height: 300px; width: auto;"/> <img src="/figures/2310.anthropic.02.png" style="height: 150px; width: auto;"/></div>
 
 
