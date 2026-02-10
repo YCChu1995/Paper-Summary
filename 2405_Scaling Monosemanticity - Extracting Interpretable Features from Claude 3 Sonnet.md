@@ -6,12 +6,12 @@
 1. 
 
 ## Tech Insights 
-1. 
+1. Pre-encoder bias is useful on synthetic data from small `toy model`, but `removing pre-encoder bias` is beneficial for `real transformer` activations. ([Source](https://transformer-circuits.pub/2024/feb-update/index.html?utm_source=chatgpt.com#dict-learning-loss))
 
 ---
 
 ## Motivation 
-1. 
+Early work applied sparse autoencoders to `tiny models`, but it was unclear whether those techniques would `scale to real production models`.
 
 ## Chain of Thoughts
 
