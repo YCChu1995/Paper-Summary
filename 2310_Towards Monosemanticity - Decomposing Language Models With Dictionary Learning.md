@@ -2,8 +2,6 @@
 > [2310.anthropic](https://transformer-circuits.pub/2023/monosemantic-features/index.html)<br>
 <div align=center><img src="/figures/2310.anthropic.03.png" style="height: 300px; width: auto;"/> <img src="/figures/2310.anthropic.02.png" style="height: 150px; width: auto;"/></div>
 
-
-
 ### Summary 
 Using `sparse`, `overcomplete` autoencoder to learn (decompose) `monosementic` features from `polysementic` activations.
 
@@ -40,7 +38,7 @@ $$x^j \approx b + \sum_{i=1}^m f_i(x^j)d_i$$
   > $\bar{x} = x - b_d$<br>
   > $f = ReLU(W_e \bar{x} + b_e)$<br>
   > $\hat{x} = W_d f + b_d$<br>
-  > $L = \frac{1}{\left | X \right |} \sum_{x \in X} \left\| x - \hat{x} \right\|^2 + \lambda \left\| f \right\|$<br>
+  > $L = \frac{1}{\left | X \right |} \sum_{x \in X} \left\| x - \hat{x} \right\|^2_2 + \lambda \left\| f \right\|_1$<br>
   > $W_e \in R^{m \times n}, W_d \in R^{n \times m}$ with $m$ columns of `unit norm`, $b_e \in R^{m}, b_d \in R^{n}$<br>
   > ( `n` is the `input and output dimension` and `m` is the autoencoder `hidden layer dimension`)
 <div align=center><img src="/figures/2310.anthropic.01.png" style="height: 250px; width: auto;"/> <img src="/figures/2310.anthropic.T1.png" style="height: 150px; width: auto;"/></div>
