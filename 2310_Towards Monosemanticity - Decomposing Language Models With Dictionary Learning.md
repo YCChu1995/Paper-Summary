@@ -97,7 +97,7 @@ $$w_{n+1} = w_n - \eta g_{\perp}$$
   
 ## Metrics to measure SAE ("far from perfect")
 1. Training loss
-2. Feature Density Histograms
+2. Feature density histograms
 3. $L^0$ norm (`interpretability` axis)
-4. Reconstructed Transformer NLL (`behavioral fidelity` axis)
+4. (Normalized) Reconstructed transformer NLL (`behavioral fidelity` axis)
 <div align=center><img src="/figures/2310.anthropic.04.png" style="height: 300px; width: auto;"/></div>
