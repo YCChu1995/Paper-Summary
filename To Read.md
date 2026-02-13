@@ -39,6 +39,9 @@ https://arxiv.org/abs/2410.02247
 - [2501](https://arxiv.org/abs/2501.17148) AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders
 - [2506](https://arxiv.org/abs/2506.19382) Measuring and Guiding Monosemanticity
 
+- [2404](https://arxiv.org/abs/2404.16014) Improving Dictionary Learning with Gated Sparse Autoencoders
+- [2405](https://www.lesswrong.com/posts/YiGs8qJ8aNBgwt2YN/improving-sae-s-by-sqrt-ing-l1-and-removing-lowest) Improving SAE's by Sqrt()-ing L1 & Removing Lowest Activating Features
+
 ### 5. Model Steering
 - [2308](https://arxiv.org/abs/2308.10248) Steering Language Models With Activation Engineering
 - [2406](https://arxiv.org/abs/2406.00045) **Personalized Steering** Personalized Steering of Large Language Models: Versatile Steering Vectors Through Bi-directional Preference Optimization
