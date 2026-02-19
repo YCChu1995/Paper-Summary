@@ -1,46 +1,154 @@
 # Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet
 > [2405](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html)<br>
-<div align=center><img src="/figures/2405.anthropic.01.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2405.anthropic.01.png" style="height: 250px; width: auto;"/></div>
 
-## SAE
-- Architecture
-  > $W_e \in R^{m \times n}, W_d \in R^{n \times m}, b_e \in R^{m}, b_d \in R^{n}, X \in R^{s,n}$<br>
-  > ( `n` is the `input and output dimension`, `m` is the autoencoder `hidden layer dimension`, and `s` is the `dataset size`.)
-  - Preprocessing step<br>
-    Applying a scalar `normalization` to the `model activations` so their average squared L2 norm is the residual stream dimension (embedding dimension), n.<br>
-    &rarr; Normalized model activations have `~ unit variance on each embedding dimension`.
+## Features as Computational Intermediates
+- `Ablation effect` is a great metric to find `causal effect` of model behaviors. (Finding features which dominate changes on output logits.)<br>
+  But it is relatively expensive, cause it requires a forward pass per feature. &rarr; A cheap approximation method is needed.
+- `Attributions` is a better proxy metric than `activations`.
+  <div align=center><img src="/figures/2405.anthropic.10.png" style="height: 250px; width: auto;"/></div>
+  <div align=center><img src="/figures/2405.anthropic.12.png" style="height: auto; width: 400px;"/>  <img src="/figures/2405.anthropic.11.png" style="height: auto; width: 400px;"/></div>
 
-  - Main SAE
-    > Feature vectors: $\frac{W_{d,i}}{\left|\left| W_{d,i} \right|\right|_2$<br>
-    > Feature activations: $f_i(x)\left|\left| W_{d,i} \right|\right|_2$
-    
-$$f(x) = ReLU(W_e x + b_e)$$
-$$\hat{x} = W_d f(x) + b_d$$
-$$L = \frac{1}{\left| X \right|} \sum_{x \in X} \left|\left| x - \hat{x} \right|\right|^2_2 + \lambda \sum_{i=1}^m f_i(x) \left|\left| W_{d,i} \right|\right|_2$$
+## Searching for Specific Features
+- Single prompts<br>
+  Input prompts w/ target concept &rarr; Find top activate features &rarr; Filter features with automated interpretability
+- Prompt combinations
+  Input prompts w/ and w/o target concept &rarr; Find top activate features
+  
+## TO-READ
 
-   
-   
-- Improves from [previous work](https://github.com/YCChu1995/Paper-Summary/blob/main/2310_Towards%20Monosemanticity%20-%20Decomposing%20Language%20Models%20With%20Dictionary%20Learning.md)
-  1. 
-
+- [Example: Multi-Step Inference](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html#computational-multistep)
+- [Searching for Specific Features]
+- [Comparison to other approaches](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html#safety-relevant-comparison)
+- [Limitations, Challenges, and Open Problems](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html#discussion-limitations)
 
 ## Summary 
 1. 
 
 ## Tech Insights 
 1. Pre-encoder bias is useful on synthetic data from small `toy model`, but `removing pre-encoder bias` is beneficial for `real transformer` activations. ([Source](https://transformer-circuits.pub/2024/feb-update/index.html?utm_source=chatgpt.com#dict-learning-loss))
+2. **Cross-Layer Superposition**<br>
+   Features are `smeared across layers`, that is why decomposing residual stream activations is better than MLP ones.<br>
+   Because gradient descent often doesn't really care exactly which layer a feature is implemented in, or even if it is isolated to a specific layer. 
+3. How to pick the `SAE SIZE` (# of hidden dimensions) or the `training steps/data size` ? <br>
+   The fitted [function](https://github.com/YCChu1995/Paper-Summary/edit/main/2405_Scaling%20Monosemanticity%20-%20Extracting%20Interpretable%20Features%20from%20Claude%203%20Sonnet.md#feature-completeness) describes the relation among<br>
+   1. `Frequency` of the concept in the `training dataset`
+   2. Number of `alive neurons` (&rarr; # of `hidden dimensions`)
+   3. Proportion of concept with feature (&rarr; possibility of having features representing the concept)
 
 ---
 
 ## Motivation 
 Early work applied sparse autoencoders to `tiny models`, but it was unclear whether those techniques would `scale to real production models`.
 
-## Chain of Thoughts
+## SAE
+- Improved architecture
+  > $W_e \in R^{m \times n}, W_d \in R^{n \times m}, b_e \in R^{m}, b_d \in R^{n}, X \in R^{s,n}$<br>
+  > ( `n` is the `input and output dimension`, `m` is the autoencoder `hidden layer dimension`, and `s` is the `dataset size`.)
+  - Preprocessing step<br>
+    Applying a scalar `normalization` to the `model activations` so their average squared L2 norm is the residual stream dimension (embedding dimension), n.<br>
+    &rarr; Normalized model activations have `~ unit variance on each embedding dimension`.<br>
+    &rarr; For the same value of `λ to mean the same thing` across datasets generated by `different transformer sizes`.
+    <div align=center>$$E_{x \in X}\left[ \left|\left| x \right|\right|_2 \right] = \sqrt{n}$$</div>
 
-## Experiment
-### 1.
-### 2. 
-- x
-- y<br>
-&rarr; y1 + y2 = y3
-- z
+  - Main SAE
+    <div align=center>$$f(x) = ReLU(W_e x + b_e)$$</div>
+    <div align=center>$$\hat{x} = W_d f(x) + b_d$$</div>
+    <div align=center>$$L = \frac{1}{\left| X \right|} \sum_{x \in X} \left|\left| x - \hat{x} \right|\right|^2_2 + \lambda \sum_{i=1}^m f_i(x) \left|\left| W_{d,i} \right|\right|_2$$</div>
+    
+    - Features activations: $f_i(x)\left|\left| W_{d,i} \right|\right|_2$
+    - Feature vectors: $\frac{W_{d,i}}{\left|\left| W_{d,i} \right|\right|_2}$
+
+- Training recipe
+  - [scaling laws] lr~5e-5, decayed linearly to zero over the last 20% of training steps.
+  - Adam optimizer beta1=0.9, beta2=0.999 and no weight decay.
+  - [scaling laws] Training steps ~200k.
+  - Batch size = 2048 or 4096 (they believe to be under the critical batch size).
+  - Gradient norm is clipped to 1.
+  - λ~5, initially 0 and linearly increases to its final value over the first 5% of training steps.
+
+- Training results
+  - The average number of `features active` on a given token was `< 300`.
+  - SAE `reconstruction` explained at least `65% of the variance` of the model activations.
+  - Dead feature proportion: 2% - 1M, 25% - 4M, 65% -34M
+    > Dead features are defined as those which were not active over a sample of $10^7$ tokens.
+
+- Improves from [previous work](https://github.com/YCChu1995/Paper-Summary/blob/main/2310_Towards%20Monosemanticity%20-%20Decomposing%20Language%20Models%20With%20Dictionary%20Learning.md)
+  - There is a preprocessing step on model activations.
+  - There is `no pre-encoder bias`.
+  - There is `no unit-L2 norm-constraint` on the columns of the decoder weight.
+    > The author believed this is the `most important change`.
+  - There is no neuron-resampling.
+    > Cause after training, the rate of dead neurons is <1%.
+
+- Analysis trick
+  > The feature activation is now $f_i \left|\left| W_{d,i} \right|\right|_2$ instead of $f_i$.<br>
+  > To simplify the analysis, building a model that makes `identical predictions` but has an `L2 norm of 1` on the columns of the decoder weight.<br>
+  > The solution is to `shift` the `feature activation part` in the decoder weight to the encoder weight and bias.
+
+  <div align=center>$$W'_e = W_e \left|\left| W_d \right|\right|_2$$ , $$b'_e = b_e \left|\left| W_d \right|\right|_2$$</div>
+  <div align=center>$$W'_d = \frac{W_d}{\left|\left| W_d \right|\right|_2}$$ , $$b'_d = b_d$$</div>
+
+## Scaling Laws
+- Purpose
+  - The extent to which additional computing improves dictionary learning results
+  - How that computation should be allocated to obtain the highest-quality dictionary possible for a given computational budget.
+  - In an SAE, there are two key hyperparameters
+    1. `number of features` being learned
+    2. `total training steps` ( $\equiv$  training data size )
+       > Which maps linearly to the amount of data used, as we train the SAE for only one epoch.
+- Metric<br>
+  There is no perfect metric for this task yet.<br>
+  Now they use the `loss function` (MSE reconstruction loss + L1 penalty on feature activations) as a `proxy metric` to measure success.
+- Sweeping Results
+  - Experimental setup
+    1. With a `fixed hyperparameters` (lr, batch size), sweep between `# of features` and `training steps` to get the following analysis graphs.
+    2. After analysis w/ fixed lr, they `subsequently swept over learning rates` at different optimal parameter settings.<br>
+       &rarr; The inferred `optimal learning rates` decreased approximately as a `power law` as a function of compute budget.<br>
+       &rarr; Then we extrapolated this trend to `choose learning rates for the larger runs`.
+  - Experimental results
+    <div align=center><img src="/figures/2405.anthropic.03.png" style="height: 220px; width: auto;"/></div> 
+    <div align=center><img src="/figures/2405.anthropic.02.png" style="height: 220px; width: auto;"/></div>
+
+## Influence on Behavior
+- Methodology<br>
+  First, decomposing the `residual stream activity` $x$ into the sum of two components, the `SAE reconstruction` $SAE(x)$ and the `reconstruction error` $error(x)$.
+  <div align=center>$$x = SAE(x)+error(x)$$</div>
+  
+  Then, only replace the $SAE(x)$ term with a modified SAE component in which we `clamp` the activity of a specific feature $v_j$ in the SAE to a specific value $c_{clamp}$, and leave the error term unchanged.
+  <div align=center>$$x_{steered} = SAE_{clamp}(x)+error(x)$$</div>
+  <div align=center>$$SAE_{clamp}(x) = \sum_{i \neq j}f_i(x) \cdot v_i + c_{clamp} \cdot v_j $$</div>
+- Steered results<br>
+  Steering in both sign (neg, pos) on the steering constant bias the model behavior properly. 
+  <div align=center><img src="/figures/2405.anthropic.04.png" style="height: 250px; width: auto;"/></div>
+  <div align=center><img src="/figures/2405.anthropic.05.png" style="height: 250px; width: auto;"/></div>
+
+## Features vs. Neurons
+- Potentail problems<br>
+  - Are features from SAE `simply reconstruct neurons` in the preceding layers to the residual layer?
+    > Since the residual activations are simply the sum of preceding neurons.
+    
+    &rarr; If so, we dont need SAE, we cound just look at neurons in the preceding layers.
+    
+  - Are neurons in the model `more interpretable` than features from SAE?<br>
+    &rarr; If so, we can simply study neurons instead of features from SAE.
+    
+- Result<br>
+  - `No`, there is no strongly correlated neuron – for 82% of our features, the most-correlated neuron has a correlation of 0.3 or smaller.
+    <div align=center><img src="/figures/2405.anthropic.06.png" style="height: 400px; width: auto;"/></div>
+  - `No`, from the automated interpretability approach by Claude 3 Opus.
+    <div align=center><img src="/figures/2405.anthropic.07.png" style="height: 150px; width: auto;"/></div>
+
+## Feature Completeness
+- Feature presence is correlated to
+  1. `Frequency` of the name in the dataset
+  2. SAE size (`# of alive features`)
+  <div align=center><img src="/figures/2405.anthropic.08.png" style="height: 170px; width: auto;"/></div>
+  <div align=center><img src="/figures/2405.anthropic.09.png" style="height: 300px; width: auto;"/></div>
+
+## Features as Computational Intermediates
+- `Ablation effect` is a great metric to find `causal effect` of model behaviors. (Finding features which dominate changes on output logits.)<br>
+  But it is relatively expensive, cause it requires a forward pass per feature. &rarr; A cheap approximation method is needed.
+- `Attributions` is a better proxy metric than `activations`.
+  <div align=center><img src="/figures/2405.anthropic.10.png" style="height: 250px; width: auto;"/></div>
+  <div align=center><img src="/figures/2405.anthropic.12.png" style="height: auto; width: 400px;"/>  <img src="/figures/2405.anthropic.11.png" style="height: auto; width: 400px;"/></div>
