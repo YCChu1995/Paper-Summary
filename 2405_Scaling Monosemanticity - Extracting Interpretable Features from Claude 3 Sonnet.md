@@ -2,28 +2,8 @@
 > [2405](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html)<br>
 <div align=center><img src="/figures/2405.anthropic.01.png" style="height: 250px; width: auto;"/></div>
 
-## Features as Computational Intermediates
-- `Ablation effect` is a great metric to find `causal effect` of model behaviors. (Finding features which dominate changes on output logits.)<br>
-  But it is relatively expensive, cause it requires a forward pass per feature. &rarr; A cheap approximation method is needed.
-- `Attributions` is a better proxy metric than `activations`.
-  <div align=center><img src="/figures/2405.anthropic.10.png" style="height: 250px; width: auto;"/></div>
-  <div align=center><img src="/figures/2405.anthropic.12.png" style="height: auto; width: 400px;"/>  <img src="/figures/2405.anthropic.11.png" style="height: auto; width: 400px;"/></div>
-
-## Searching for Specific Features
-- Single prompts<br>
-  Input prompts w/ target concept &rarr; Find top activate features &rarr; Filter features with automated interpretability
-- Prompt combinations
-  Input prompts w/ and w/o target concept &rarr; Find top activate features
-  
-## TO-READ
-
-- [Example: Multi-Step Inference](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html#computational-multistep)
-- [Searching for Specific Features]
-- [Comparison to other approaches](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html#safety-relevant-comparison)
-- [Limitations, Challenges, and Open Problems](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html#discussion-limitations)
-
 ## Summary 
-1. 
+New SAE architecture can work with a industrial-level model.
 
 ## Tech Insights 
 1. Pre-encoder bias is useful on synthetic data from small `toy model`, but `removing pre-encoder bias` is beneficial for `real transformer` activations. ([Source](https://transformer-circuits.pub/2024/feb-update/index.html?utm_source=chatgpt.com#dict-learning-loss))
@@ -152,3 +132,9 @@ Early work applied sparse autoencoders to `tiny models`, but it was unclear whet
 - `Attributions` is a better proxy metric than `activations`.
   <div align=center><img src="/figures/2405.anthropic.10.png" style="height: 250px; width: auto;"/></div>
   <div align=center><img src="/figures/2405.anthropic.12.png" style="height: auto; width: 400px;"/>  <img src="/figures/2405.anthropic.11.png" style="height: auto; width: 400px;"/></div>
+
+## Searching for Specific Features
+- Single prompts<br>
+  Input prompts w/ target concept &rarr; Find top activate features &rarr; Filter features with automated interpretability
+- Prompt combinations<br>
+  Input prompts w/ and w/o target concept &rarr; Find top fitted features (activate for w/ cases and deactivate for w/o cases) &rarr; Filter features with automated interpretability
