@@ -2,15 +2,18 @@
 > [2511.HuggingFace](https://huggingface.co/spaces/dlouapre/eiffel-tower-llama)
 <div align=center><img src="/figures/2511.HuggingFace.01.png" style="height: 300px; width: auto;"/></div>
 
-### 3. Steering and generation improvements
-#### 3.1 Improving directions
-- `Clamping` to ensure `consistent activations`
-- `Repetition penalty` during generation to prevent the `gibberish` mode.
-#### 3.2 Clamping
-
-
 ## Summary 
 1. The steering coefficient 'sweet spot' is narrow. ([source](#23-results-of-a-1d-grid-search-sweep))
+2. `Clamping` is more effective than adding.
+   > We found that clamping activations improves `concept inclusion` without harming `fluency`.<br>
+   > This aligns with the method used in the Golden Gate Claude demo but contradicts the findings reported in AxBench for Gemma models.<br>
+   > This might be due to differences in model architecture or the specific concept being steered.
+3. Tuning generation parameters improves `fluency` and `instruction following`
+   > Using a `lower temperature` (0.5) and applying a modest `repetition penalty` (1.1) during generation significantly reduces repetitions in the output.<br>
+   > This leads to improved fluency and instruction following without compromising concept inclusion.
+4. More features don't necessarily mean better steering.
+   > Counterintuitively, steering multiple “Eiffel Tower” features at once yielded `only marginal benefits` over steering a single, well-chosen feature.
+   > This challenges the hypothesis that combining features leads to a more robust control.
 
 ## Tech Insights 
 1. The norm of residual activations increases as the layer index increases as well. ([source](https://github.com/YCChu1995/Paper-Summary/new/main#21-range-of-residual-activations))
@@ -73,3 +76,37 @@ There are different statements about model steering with SAE, this paper try to 
   - LLM `instruction following` and `fluency` are highly `correlated` , but `anticorrelated` with `concept inclusion`, showing the `tradeoff` between `steering strength` and `answer quality`.
   - `Repetition` metric is `strongly anticorrelated` with `fluency` and `instruction following`.
 <div align=center><img src="/figures/2511.HuggingFace.06.png" style="height: 450px; width: auto;"/></div>
+
+### 3. Steering and generation improvements
+#### 3.1 Improving directions
+- `Clamping` to ensure `consistent activations`
+  > One hypothesis is that it could `prevent` the model from activating `suppressor features` that would counteract the effect of steering.
+- `Repetition penalty` during generation to prevent the `gibberish` mode.
+<div align=center><img src="/figures/2511.HuggingFace.07.png" style="height: 450px; width: auto;"/></div>
+
+#### 3.2 Clamping
+- Clamping improves `concept inclusion` (both from the LLM score and the explicit reference) without harming the other metrics.
+  > The fact that `concept inclusion` (but **NOT** `fluency` or `instruction following`) is improved suggests that clamping might help `counteract` some `suppressor features` preventing the Eiffel Tower concept from being fully activated.<br>
+  > However, confirming this hypothesis would require further investigation.
+#### 3.3 Repetition Penalty
+- `Repetition` is a major cause of loss of `fluency` when steering with SAEs.
+- To mitigate this, penalize the logit of tokens that have already been generated
+   - `Lower temperature` (0.5)
+   - `Repetition penalty` factor (1.1)
+     > The repetition_penalty parameter of the generation API in 🤗Transformers
+
+### 4. Multi-Layer optimization
+#### 4.0 Purpose
+- The `concept inclusion` score of SAE is way below.
+- Common reported phenomena, `feature redundancy` and `feature splitting`, occur when a concept is represented by several features that are often co-activated or are responsible for the same concept in slightly different contexts.<br>
+  &rarr; These phenomena suggest that steering only one of those features would therefore be `insufficient to fully activate the concept`, or to `activate it consistently across different prompts`.
+#### 4.1 Layer and features selection
+- Step 1 - Identified `candidate features` based on their `top activating prompts` in the dataset.
+- Step 2 - Preprocessing
+  - Kept only those features that `unambiguously referenced` the Eiffel Tower
+  - Discarded features that seemed to be more generally about Paris, towers, famous landmarks in big cities, or simply tokens like “E” or “iff”.
+- Step 3 - Kept features in the `intermediate layers`.
+#### 4.2 [Optimization methodology](https://dlouapre-eiffel-tower-llama.hf.space/#52-optimization-methodology)
+#### 4.3 Results of multi-layer optimization
+- Steering more features did help, but only by a `slim margin`.
+<div align=center><img src="/figures/2511.HuggingFace.08.png" style="height: 450px; width: auto;"/></div>
