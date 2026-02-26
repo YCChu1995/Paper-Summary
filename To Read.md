@@ -35,7 +35,6 @@ https://arxiv.org/abs/2410.02247
 ### 4. Monosemanticity
 - [2309](https://arxiv.org/abs/2309.08600) Sparse Autoencoders Find Highly Interpretable Features in Language Models
 - [2408](https://arxiv.org/abs/2408.05147) Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2
-- [2405](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html) Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet
 - [2501](https://arxiv.org/abs/2501.17148) AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders
 - [2506](https://arxiv.org/abs/2506.19382) Measuring and Guiding Monosemanticity
 
