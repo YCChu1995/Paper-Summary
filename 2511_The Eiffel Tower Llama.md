@@ -3,7 +3,7 @@
 <div align=center><img src="/figures/2511.HuggingFace.01.png" style="height: 300px; width: auto;"/></div>
 
 ## Summary 
-1. The steering coefficient 'sweet spot' is narrow. ([source](#23-results-of-a-1d-grid-search-sweep))
+1. The steering coefficient 'sweet spot' is narrow. ([graph](#23-results-of-a-1d-grid-search-sweep))
 2. `Clamping` is more effective than adding.
    > We found that clamping activations improves `concept inclusion` without harming `fluency`.<br>
    > This aligns with the method used in the Golden Gate Claude demo but contradicts the findings reported in AxBench for Gemma models.<br>
