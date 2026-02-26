@@ -16,7 +16,7 @@
    > This challenges the hypothesis that combining features leads to a more robust control.
 
 ## Tech Insights 
-1. The norm of residual activations increases as the layer index increases as well. ([source](https://github.com/YCChu1995/Paper-Summary/new/main#21-range-of-residual-activations))
+1. The norm of residual activations increases as the layer index increases as well. ([source](#21-range-of-residual-activations))
    > The `optimal steering strength` (8.5) is of the order of `half the magnitude` of a `layer’s typical activation` ($15^th$ layer).<br>
    > This is consistent with the idea that steering vectors should not overwhelm the model’s natural activations.<br>
    > In the case of our feature, this is about `twice` the `maximum activation` observed in the training dataset (4.77).<br>
