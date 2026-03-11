@@ -1,3 +1,14 @@
+1. [Semantic Chunking](https://medium.com/the-ai-forum/semantic-chunking-for-rag-f4733025d5f5)
+2. [Late Chunking](https://jina.ai/news/late-chunking-in-long-context-embedding-models/)
+3. [Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval)
+4. [Re-ranking](https://www.pinecone.io/learn/series/rag/rerankers/)
+5. [Query Expansion](https://haystack.deepset.ai/blog/query-expansion)
+6. Advanced RAG: [Multi-Query](https://medium.com/@kbdhunga/advanced-rag-multi-query-retriever-approach-ad8cd0ea0f5b) Retriever Approach
+7. Agentic RAG - [Tool calling](https://qdrant.tech/articles/agentic-rag/)
+8. [Self-Reflective RAG](https://blog.langchain.com/agentic-rag-with-langgraph/)
+9. [Fine-tuned Embedding Models](https://www.philschmid.de/fine-tune-embedding-model-for-rag)
+
+
 1. [2506.02153](https://arxiv.org/abs/2506.02153) Small Language Models are the Future of Agentic AI
 2. [2410.06205](https://arxiv.org/abs/2410.06205) Why RoPE is useful?
 
