@@ -1,29 +1,31 @@
 # Passage Re-ranking with BERT
-> [1901](https://arxiv.org/abs/1901.04085)<br>
+> [1901.04085](https://arxiv.org/abs/1901.04085)<br>
 <div align=center><img src="/figures/1901.04085.01.png" style="height: 150px; width: auto;"/></div>
 
 ## Summary 
-1. 
+1. Passage Re-ranking with BERT `outperforms` previous methods. ([source](#experimental-result))
+2. Passage Re-ranking with BERT is `easy to fine-tune`. ([source](#experimental-result))
 
 ## Tech Insights 
-1. 
+1. To prevent testing data leakage, we should do pre-training without them.
+   > The official pre-trained BERT models were `pre-trained` on the full Wikipedia.<br>
+   > Wikipedia documents that are also used in the `test set` of TREC-CAR.<br>
+   > Thus, to avoid this leak of test data into training, we pre-trained the BERT re-ranker only on half of Wikipedia used by TREC-CAR’s training set.
 
 ---
 
 ## Motivation 
 1. Traditional search ranking relies heavily on `lexical matching`.
-   > Fail example<br>
+   > Fail example (lexical mismatching)<br>
    > Query: car engine repair<br>
    > Document: how to fix automobile motor
-2. Neural models before BERT are `shallow`, `weak contextual understanding`, and `poor cross-token interaction`.
-3. This research repurposes a pretrained LM (BERT) to improve information retrieval.
+2. Previous re-ranking models require `handcrafted features`, and are `shallow`, `weak contextual understanding`, and `poor cross-token interaction`.
+3. This research fine-tunes a pretrained LM (BERT) for passage re-ranking.
 
-## Chain of Thoughts
+## Experimental Result
+- Passage Re-ranking with BERT `outperforms` previous methods.
+  <div align=center><img src="/figures/1901.04085.T1.png" style="height: 150px; width: auto;"/></div>
 
-## Experiment
-### 1.
-### 2. 
-- x
-- y<br>
-&rarr; y1 + y2 = y3
-- z
+- Passage Re-ranking with BERT is `easy to fine-tune`.
+  > 100k iterations * batch size of 128 query-passage pairs ~ `2%` of the full training set
+  <div align=center><img src="/figures/1901.04085.01.png" style="height: 150px; width: auto;"/></div>
