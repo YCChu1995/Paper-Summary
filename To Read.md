@@ -1,13 +1,30 @@
 1. [Semantic Chunking](https://medium.com/the-ai-forum/semantic-chunking-for-rag-f4733025d5f5)
+   - [2512] https://arxiv.org/abs/2512.00367
+   - [2601] https://www.sciencedirect.com/science/article/pii/S0950705125019343?via%3Dihub
 2. [Late Chunking](https://jina.ai/news/late-chunking-in-long-context-embedding-models/)
+   - [2409] https://arxiv.org/abs/2409.04701
 3. [Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval)
+   - [2409] https://www.anthropic.com/engineering/contextual-retrieval
+   - [2407.Survey] https://arxiv.org/abs/2407.13193
 4. [Re-ranking](https://www.pinecone.io/learn/series/rag/rerankers/)
+   - [2004](https://arxiv.org/abs/2004.12832)
+   - [2112](https://arxiv.org/abs/2112.01488)
+   - [2108](https://arxiv.org/abs/2108.08513)
 5. [Query Expansion](https://haystack.deepset.ai/blog/query-expansion)
+   - [1904](https://arxiv.org/abs/1904.08375)
+   - [2303](https://arxiv.org/abs/2303.07678)
+   - [2103](https://arxiv.org/abs/2103.05256)
 6. Advanced RAG: [Multi-Query](https://medium.com/@kbdhunga/advanced-rag-multi-query-retriever-approach-ad8cd0ea0f5b) Retriever Approach
 7. Agentic RAG - [Tool calling](https://qdrant.tech/articles/agentic-rag/)
 8. [Self-Reflective RAG](https://blog.langchain.com/agentic-rag-with-langgraph/)
-9. [Fine-tuned Embedding Models](https://www.philschmid.de/fine-tune-embedding-model-for-rag)
-
+9. Embedding Models
+   - [2212.Microsoft](https://arxiv.org/abs/2212.03533)
+   - [2308.Alibaba](https://arxiv.org/abs/2308.03281)
+   - [2402.BAAI](https://arxiv.org/abs/2402.03216)
+10. [Fine-tuned Embedding Models](https://www.philschmid.de/fine-tune-embedding-model-for-rag)
+    - [1908](https://arxiv.org/abs/1908.10084)
+    - [2020](https://aclanthology.org/2020.emnlp-main.550/)
+    - BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models
 
 1. [2506.02153](https://arxiv.org/abs/2506.02153) Small Language Models are the Future of Agentic AI
 2. [2410.06205](https://arxiv.org/abs/2410.06205) Why RoPE is useful?
