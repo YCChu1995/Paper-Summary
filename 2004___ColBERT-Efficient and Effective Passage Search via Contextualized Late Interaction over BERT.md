@@ -3,6 +3,15 @@
 > ColBERT
 <div align=center><img src="/figures/2004.12832.01.png" style="height: 200px; width: auto;"/></div>
 
+### 5. Inference
+#### 5-1. Top-k Re-ranking w/ ColBERT
+- Steps:
+  1. `Load` the indexed documents representations into memory, representing each document as a matrix of embeddings.
+  2. `Compute` the bag of contextualized embeddings, $E_q$.
+  
+#### 5-2. End-to-end Top-k Retrieval w/ ColBERT
+
+
 ### 5. Top-k Re-ranking w/ ColBERT
 ### 6. End-to-end Top-k Retrieval w/ ColBERT
 
@@ -68,7 +77,7 @@ $$S_{q,d} \equiv \underset{i \in \left[ \left| E_q \right| \right]}{\sum} \under
   1. Find most similar document token
   2. Sum these max similarities
 - $S_{q,d}$ is the relevance score of document $d$ to query $q$
-- $E_q$, $E_d$ are the embeddings corresponds to $q$, $d$
+- $E_q$, $E_d$ are `the bags of the contextualized embeddings` corresponds to $q$, $d$
 ### 4. Offine Indexing: Computing & Storing Document Embeddings
 - Core concept
   1. `Cap` the sequence length on a per-batch basis to `improve GPU throughput`. (Step.4)
@@ -76,7 +85,7 @@ $$S_{q,d} \equiv \underset{i \in \left[ \left| E_q \right| \right]}{\sum} \under
   2. To save computational waste from `over padding` when capping the sequence length, `batch` documents with comparable length. (Step.3)
   3. To help batching documents with comparable length, `sort` documents by length. (Step.2)
   4. To save sorting cost, `divide` the gigantic corpus into smaller big document chunk. (Step.1)
-- Steps
+- Steps:
   1. `Divide` the gigantic corpus into smaller big document chunk of $B$ documents (e.g., $B$ = 100,000) to save sorting cost in the following step.
   2. `Sort` documents in each document chunk by length.
   3. `Batch` $b$ documents (e.g., $b$ = 128) with comparable length.
