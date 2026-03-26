@@ -12,7 +12,7 @@
 ## Tech Insights 
 1. `Query augmentation` is intended to serve as a `soft query expansion` with a `differentiable mechanism` to amplify important query signals.
 2. Data (documents) in a `batch sharing the same shape` (document length) yields more `uniform` and `compact` tensor shapes for the GPU, `improving GPU throughput`.
-   > This is why in [4. Offine Indexing: Computing & Storing Document Embeddings](#4-offine-indexing-computing--storing-document-embeddings) they padded documents to the same length (max length).
+   > This is why in [4. Offine Indexing: Computing & Storing Document Embeddings](#4-offline-indexing-computing--storing-document-embeddings) they padded documents to the same length (max length).
 3. Ablation studies
    - For single-vector re-ranking, `dot product` outperforms `cosine similarity`.
    - For similarity calculation over contextualized document embeddings, `Maximum-Similarity` outperforms `Average-Similarity`.
