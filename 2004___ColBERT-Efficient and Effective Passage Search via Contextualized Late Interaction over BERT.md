@@ -3,25 +3,17 @@
 > ColBERT
 <div align=center><img src="/figures/2004.12832.01.png" style="height: 200px; width: auto;"/></div>
 
-#### 5-2. End-to-end Top-k Retrieval w/ ColBERT
-- Focus on retrieving the top-k results directly from a `large document collection` with $N$ documents, where $k$ << $N$.
-- Performance boost by utilizing `fast vector-similarity data structures` instead of applying MaxSin between one query embedding and all documents' embeddings.
-- Inference (2-stage procedure):
-  1. Approximate stage<br>
-     - Issue $N_q$ contextualized query embeddings ($E_q$) onto FAISS index to `retrieve` the top - $k'$ (e.g., $k'=\frac{k}{2}$) matches over all contextualized document embeddings ($E_d$) each.<br>
-       This produces $N_{ret} = N_q \times k'$ document IDs in total.
-       > ANN search: $E_{q,i}$ &rarr; top - $k'$ $E_d,j$ in FAISS
-     - `Filter` repeated document IDs. 
-     - Keep raising $k'$ until $N_{ret, uniq} \geq k$.
-  2. Refinement stage<br>
-     `Re-ranking` over all $N_{ret, uniq}$ documents.
-  3. Inference details
-     - 
-  
+## Ablation Studies
+- For single-vector re-ranking, `dot product` ( Model [A] ) outperforms `cosine similarity`.
+- For similarity calculation over contextualized document embeddings, `Maximum-Similarity` ( Model [D] ) outperforms `Average-Similarity`( Model [B] ).<br>
+  This results suggest the importance of individual terms in the query paying special attention to particular terms in the document.
+- `Query Augmentation` ( Model [C] & [D] ) boosts performance.
+- For document retrieving in 2-stage (retrieval + re-ranking) pipeline, retrieving with `ColBERT` ( Model [F] ) outperforms `BM25`.
+<div align=center><img src="/figures/2004.12832.05.png" style="height: 150px; width: auto;"/></div>
 
 ### Section 4.4 whyquery augmentation is important to ColBERT
 ### Section 4.5 How to futher boost the indexing computation
-### Section 4.2 ColBERT is not only cheaper, it also scales much beer with k as we examine in §4.2.
+
 
 ## Summary 
 1. 
@@ -30,6 +22,7 @@
 1. `Query augmentation` is intended to serve as a `soft query expansion` with `differentiable mechanism` to amplify important query signals.
 2. Data (documents) in a `batch sharing same shape` (document length) yields more `uniform` and `compact` tensor shapes for the GPU, `improving GPU throughput`.
    > This is why in [4. Offine Indexing: Computing & Storing Document Embeddings](#4-offine-indexing-computing--storing-document-embeddings) they padded documents to the same length (max length).
+3. For single-vector re-ranking, `dot product` outperforms `cosine similarity`.
 
 ---
 
@@ -97,8 +90,8 @@ $$S_{q,d} \equiv \underset{i \in \left[ \left| E_q \right| \right]}{\sum} \under
   3. `Batch` $b$ documents (e.g., $b$ = 128) with comparable length.
   4. `Cap` the sequence length on a per-batch basis.
   5. `Storing` document embeddings after ColBERT.
-### 5. Inference
-#### 5-1. Top-k Re-ranking w/ ColBERT
+## Inference
+### 1. Top-k Re-ranking w/ ColBERT
 - Steps:
   1. `Load` the indexed documents representations into memory, representing each document as a matrix of embeddings.
   2. `Gather` the document representations into a `3-dimensional tensor` $D$ ($k$, $T_d^{max}$, $m$) consisting of k document matrices.<br>
@@ -125,3 +118,23 @@ $$S_{q,d} \equiv \underset{i \in \left[ \left| E_q \right| \right]}{\sum} \under
   # Sum over query tokens (Step.6)
   scores = sim_q.sum(dim=1) # (k,)
   ```
+- ColBERT is not only cheaper, it also scales much better with $k$
+  > ColBERT decouples encoding from interaction, so increasing $k$ only increases cheap similarity computations, not expensive Transformer passes.
+  <div align=center><img src="/figures/2004.12832.04.png" style="height: 200px; width: auto;"/></div>
+### 2. End-to-end Top-k Retrieval w/ ColBERT
+- Focus on retrieving the top-k results directly from a `large document collection` with $N$ documents, where $k$ << $N$.
+- Performance boost by utilizing `fast vector-similarity data structures` instead of applying MaxSin between one query embedding and all documents' embeddings.
+- Inference (2-stage procedure):
+  1. Approximate stage<br>
+     - Issue $N_q$ contextualized query embeddings ($E_q$) onto FAISS index to `retrieve` the top - $k'$ (e.g., $k'=\frac{k}{2}$) matches over all contextualized document embeddings ($E_d$) each.<br>
+       This produces $N_{ret} = N_q \times k'$ document IDs in total.
+       > ANN search: $E_{q,i}$ &rarr; top - $k'$ $E_d,j$ in FAISS
+     - `Filter` repeated document IDs. 
+     - Keep raising $k'$ until $N_{ret, uniq} \geq k$.
+  2. Refinement stage<br>
+     `Re-ranking` over all $N_{ret, uniq}$ documents.
+  3. FAISS Inference details
+     - `IVFPQ` (inverted file with product quantization) index
+     - Partitions the embedding space into `P cells` (e.g., $P$ = 1000) based on `k-means clustering` and then assigns each document embedding to its nearest cell based on the selected vector-similarity metric.
+     - For serving queries, when searching for the top - $k'$ matches for a single query embedding, only the `nearest p partitions` (e.g., $p$ = 10) are searched.
+     - `Product quantization` to improve memory efficiency, every embedding is divided into s (e.g., s = 16) sub-vectors, each represented using one byte.
