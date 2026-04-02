@@ -4,7 +4,7 @@
 <div align=center><img src="/figures/2002.10957.01.png" style="height: 250px; width: auto;"/></div>
 
 ## Summary 
-1. 
+- `Self-attention` distillation (last layer) + `value-relation` distillation (last layer) + `teacher assistant` &rarr; SOTA distillation
 
 ## Tech Insights 
 1. `Last layer` distillation outperforms `layer-to-layer` distillation.
