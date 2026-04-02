@@ -1,8 +1,29 @@
 # MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers
 > [2002.10957](https://arxiv.org/abs/2002.10957)<br>
 > MiniLM
-<div align=center><img src="/figures/2002.10957.01.png" style="height: 150px; width: auto;"/></div>
+<div align=center><img src="/figures/2002.10957.01.png" style="height: 250px; width: auto;"/></div>
 
+## Summary 
+1. 
+
+## Tech Insights 
+1. `Last layer` distillation outperforms `layer-to-layer` distillation.
+2. `Value-Relation` transfer outperforms `raw values` transfer.
+3. `Value-Relation` transfer boosts distillation performance in scale. &rarr; `Attention - routing; value-relation - content`.
+   
+---
+
+## Motivation 
+- At the moment (~2020), core problems of LMs are:
+  1. Too large (100M+ params)
+  2. Too slow for
+- Existing methods compress `outputs` (logits & hidden states), not `internal reasoning` (attention structure). 
+  1. Distillation - Loses performance
+  2. Pruning - Hard to optimize
+  3. Quantization - Limited gains
+- Distillation models (DistilBERT, TinyBERT) mimic `logits` & `hidden states`, but ignore `attention structure`.
+- This paper hypothesizes that `attention = knowledge`.
+      
 ## Transformer Distillation
 ### 1. Overview
 - Knowledge distillation is to train the `small student model` $S$ on a transfer feature set provided by the `large teacher model` $T$.
@@ -20,6 +41,7 @@
   2. `Value-Relation` of the last layer
   3. `Teacher assistant` (helps when the size gap between $S$ and $T$ is large)
 - Training loss is the sum of `self-attention` and `value-relation`. &rarr; $L = L_{AT} + L_{VR}$
+  <div align=center><img src="/figures/2002.10957.01.png" style="height: 250px; width: auto;"/></div>
 #### 2-1. Self-Attention Distribution Transfer
 - Minimizing the `KL-divergence` between the `self-attention distributions` of $T$ and $S$.
   <div align=center>$$L_{AT} = \frac{1}{A_h \left| x \right|} \sum_{a=1}^{A_h} \sum_{t=1}^{\left| x \right|}  D_{KL} \left( A_{L,a,t}^T \parallel A_{M,a,t}^S \right)$$</div>
@@ -41,33 +63,12 @@
 
   > $V_{L,a}^T \in R^{\left| x \right| \times d_k}, V_{M,a}^S \in R^{\left| x \right| \times d_k'}$ are the values of an attention head.<br>
   > $VR_L^T, VR_M^S \in R^{A_h \times \left| x \right| \times \left| x \right|}$ are the value-relation of the last Transformer layer.
-
-## Summary 
-1. 
-
-## Tech Insights 
-1. 
-
----
-
-## Motivation 
-- At the moment (~2020), core problems of LMs are:
-  1. Too large (100M+ params)
-  2. Too slow for
-- Existing methods compress `outputs` (logits & hidden states), not `internal reasoning` (attention structure). 
-  1. Distillation - Loses performance
-  2. Pruning - Hard to optimize
-  3. Quantization - Limited gains
-- Distillation models (DistilBERT, TinyBERT) mimic `logits` & `hidden states`, but ignore `attention structure`.
-- This paper hypothesizes that `attention = knowledge`.
-      
-
-## Chain of Thoughts
-
-## Experiment
-### 1.
-### 2. 
-- x
-- y<br>
-&rarr; y1 + y2 = y3
-- z
+### 3. Ablation Studies
+- `Last layer` distillation outperforms `layer-to-layer` distillation.
+  <div align=center><img src="/figures/2002.10957.T7.png" style="height: 150px; width: auto;"/></div>
+- `Value-Relation` transfer outperforms `raw values` transfer.
+  <div align=center><img src="/figures/2002.10957.T6.png" style="height: 180px; width: auto;"/></div>
+- `Value-Relation` transfer helps distillation performance.
+  <div align=center><img src="/figures/2002.10957.T5.png" style="height: 150px; width: auto;"/></div>
+- `Value-Relation` transfer works in scale.
+  <div align=center><img src="/figures/2002.10957.T8.png" style="height: 100px; width: auto;"/></div>
