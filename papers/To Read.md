@@ -7,9 +7,7 @@
    - [2409] https://www.anthropic.com/engineering/contextual-retrieval
    - [2407.Survey] https://arxiv.org/abs/2407.13193
 4. [Re-ranking](https://www.pinecone.io/learn/series/rag/rerankers/)
-   - [2112](https://arxiv.org/abs/2112.01488)
    - [2108](https://arxiv.org/abs/2108.08513)
-   - [MiniLM](https://arxiv.org/abs/2002.10957)
    - [ModernBERT](https://arxiv.org/abs/2412.13663)
 5. [Query Expansion](https://haystack.deepset.ai/blog/query-expansion)
    - [1904](https://arxiv.org/abs/1904.08375)
