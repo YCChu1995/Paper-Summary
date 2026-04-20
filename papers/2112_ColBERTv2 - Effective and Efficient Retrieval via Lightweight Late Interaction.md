@@ -1,7 +1,6 @@
 # ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction
 > [2112.01488](https://arxiv.org/abs/2112.01488)<br>
 > ColBERTv2
-<div align=center><img src="/figures/2112.01488.01.png" style="height: 150px; width: auto;"/></div>
 
 ## Summary 
 1. ColBERTv2 improves `performance` by training with `hard negatives`.
