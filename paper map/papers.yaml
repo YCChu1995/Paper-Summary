@@ -1,0 +1,38 @@
+papers:
+  - id: intrinsic_dim
+    date: "1804"
+    alias: "Measuring the Intrinsic Dimension"
+    title: "Measuring the Intrinsic Dimension of Objective Landscapes"
+    category: "optimization"
+    takeaways:
+      - id: t1
+        text: "Most well-trained model lies on a flat low-loss basin"
+      - id: t2
+        text: "Most models has low intrinsic dimension and high parameter redundancy"
+
+  - id: model_soup
+    date: "1803"
+    alias: "Model Soup"
+    title: "Model soups: averaging weights..."
+    category: "optimization"
+    takeaways: []
+
+  - id: lora
+    date: "2106"
+    alias: "LoRA"
+    title: "Low-Rank Adaptation of Large Language Models"
+    category: "training"
+    takeaways:
+      - id: t1
+        text: "LoRA learns stable signals with efficient low-rank updates."
+      - id: t2
+        text: "Ranks 4–16 work well and ∆Wq + ∆Wv is a strong adapter configuration."
+      - id: t2
+        text: "Ranks 4–16 work well and ∆Wq + ∆Wv is a strong adapter configuration."
+
+relations:
+  - from: intrinsic_dim.t1
+    to: model_soup
+
+  - from: intrinsic_dim.t2
+    to: lora

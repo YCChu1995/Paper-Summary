@@ -11,7 +11,6 @@ texts = ["I love machine learning.", "The cat is on the table.", "Dods are under
 embeddings = embed_texts(texts)
 
 from sklearn.decomposition import PCA
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
 # Reduce embeddings to 3D for visualization
