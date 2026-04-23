@@ -22,10 +22,8 @@
 2. Clipping Distance<br>
    They hypothesized that precise relative position information is `not useful beyond a certain distance`.
    Their experimental result (Table 2) verifies that the distance threshold is short (2).
-   
- $$\alpha_{ij} = w_{clip(j-i, k)}$$
- $$clip(x, k) = max(-k, min(k, x))$$
-  
+   <div align=center>$$\alpha_{ij} = w_{clip(j-i, k)}$$</div>
+   <div align=center>$$clip(x, k) = max(-k, min(k, x))$$</div>
    <div align=center><img src="/figures/1803.02155.T2.png" style="height: 150px; width: auto;"/></div>
 
 3. Ablating Relative Position Embedding<br>
