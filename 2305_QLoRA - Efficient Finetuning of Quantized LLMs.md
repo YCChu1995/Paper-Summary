@@ -1,6 +1,6 @@
-# QLORA: Efficient Finetuning of Quantized LLMs
+# QLoRA: Efficient Finetuning of Quantized LLMs
 > [2305.14314](https://arxiv.org/abs/2305.14314)<br>
-> QLORA
+> QLoRA
 <div align=center><img src="/figures/2305.14314.01.png" style="height: 200px; width: auto;"/></div>
 
 ## Summary 
